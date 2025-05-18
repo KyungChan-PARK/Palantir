@@ -3,6 +3,7 @@ Dash app: 교육 지식 그래프 인터랙티브 맵
 - Neo4j → pandas → dash-cytoscape 네트워크
 - Plotly bar: Topic PageRank
 """
+import os
 import dash
 import dash_cytoscape as cyto
 import dash_html_components as html
@@ -13,7 +14,9 @@ from neo4j import GraphDatabase
 from dash import Dash, dcc, html, Output, Input
 
 # Neo4j 연결
-driver = GraphDatabase.driver("bolt://localhost:7687", auth=("neo4j", "pass"))
+driver = GraphDatabase.driver(
+    "bolt://localhost:7687", auth=("neo4j", os.getenv("NEO4J_PASSWORD", "pass"))
+)
 
 
 def fetch_graph(limit: int = 200):
