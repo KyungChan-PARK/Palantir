@@ -1,0 +1,101 @@
+*** Begin Patch
+*** Update File: analysis/tools/dash_knowledge_map.py
+@@
+-import neo4j
+-from common.neo4j_utils import fetch_graph
++"""Dash 지식 그래프 앱 → FastAPI 백엔드 호출 버전.
++
++`fetch_graph()` 가 FastAPI `/graph` 엔드포인트를 통해 데이터를 받아오도록 수정했습니다.
++환경 변수 `BACKEND_URL` 로 엔드포인트를 오버라이드할 수 있습니다 (기본값 http://localhost:8000/graph).
++"""
++
++import os
++import requests
++
++BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000/graph")
++
++
++def fetch_graph(limit: int = 500):
++    """백엔드 API에서 지식 그래프 데이터를 JSON으로 가져온다."""
++    res = requests.get(BACKEND_URL, params={"limit": limit}, timeout=10)
++    res.raise_for_status()
++    return res.json()
+*** End Patch
+
+*** Begin Patch
+*** Update File: README.md
+@@
+ ## 🗺️ Architecture
+-```mermaid
+-%%{ init: { 'theme': 'base', 'flowchart': { 'curve':'linear' } } }%%
+-graph LR
+-  A[OneDrive] --> B[Airflow]
+-  B --> C[Neo4j]
+-  B --> D[ChromaDB]
+-  B --> E[Great Expectations]
+-  F[FastAPI] --> C
+-  G[Dash UI] --> F
+-```
++```mermaid
++%%{ init: { 'theme': 'base', 'flowchart': { 'curve':'linear' } } }%%
++graph LR
++  A[Source Docs] --> B[Airflow]
++  B --> C[Neo4j]
++  B --> D[ChromaDB]
++  B --> E[Great Expectations]
++  F[FastAPI] --> C
++  G[Dash UI] --> F
++```
+*** End Patch
+
+*** Begin Patch
+*** Add File: ai_resources/embeddings/loader_config.yaml
++file_loaders:
++  - file_glob: "*.txt"
++    loader_class: UnstructuredTextLoader
+*** End Patch
+
+*** Begin Patch
+*** Update File: .gitignore
+@@
+-# wheel 캐시 제외 (옵션)
+-# vendor/
++# 오프라인 설치 wheel 저장소를 버전 관리 대상에 포함
++!vendor/
+*** End Patch
+
+*** Begin Patch
+*** Add File: scripts/quality_check.sh
++#!/usr/bin/env bash
++set -e
++python -m compileall -q .
++flake8 . --statistics --count --exit-zero
++pytest -q --maxfail=1 --disable-warnings || true
+*** End Patch
+
+*** Begin Patch
+*** Add File: .github/workflows/ci.yml
++name: CI
++
++on:
++  push:
++    branches: ["main"]
++  pull_request:
++    branches: ["main"]
++
++jobs:
++  test:
++    runs-on: ubuntu-latest
++    steps:
++      - uses: actions/checkout@v4
++      - name: Setup Python
++        uses: actions/setup-python@v5
++        with:
++          python-version: "3.10"
++      - name: Install deps (offline wheels)
++        run: |
++          python -m pip install --no-index --find-links vendor -r requirements.txt
++      - name: Quality checks
++        run: bash scripts/quality_check.sh
+*** End Patch
+*** End Patch
