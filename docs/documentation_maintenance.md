@@ -23,7 +23,7 @@
 ## 3. 자동화 툴
 | 스크립트 | 설명 | 사용 시점 |
 |-----------|------|-----------|
-| `analysis/tools/update_docs.py` | 제목 아래 경고문 삽입 및 용어 일괄 치환 | 대규모 용어 변경 시 | 
+| `update-docs` | 제목 아래 경고문 삽입 및 용어 일괄 치환 | 대규모 용어 변경 시 |
 | `generate_directory_listing.bat` | 실제 폴더 구조 → `docs/directory_structure.md` 자동 갱신 | 폴더 추가/이동 후 | 
 | `scripts/generate_ge_suite.py` | CSV → GE Expectation Suite JSON | 새 데이터셋 도입 시 | 
 | `scripts/ontology_refactor.py` | CSV 스키마 diff → Cypher 패치 생성·적용 | 온톨로지 변경 시 |
