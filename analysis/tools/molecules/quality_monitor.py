@@ -8,12 +8,13 @@ Great Expectations 기반 데이터 품질 모니터링 시스템을 제공합�
 import json
 import logging
 import os
-import yaml
+import yaml  # type: ignore
 from datetime import datetime
 from typing import Dict, List, Optional, Union, Any
-import pandas as pd
+import pandas as pd  # type: ignore
 
 from analysis.mcp_init import mcp
+from common.helpers import load_config
 
 # 로깅 설정
 logger = logging.getLogger("quality_monitor")
@@ -26,7 +27,7 @@ class QualityMonitoringSystem:
         Args:
             config_path: 품질 모니터링 구성 파일 경로
         """
-        self.config = self._load_config(config_path)
+        self.config = load_config(config_path)
         self.expectations_dir = self.config["expectations_dir"]
         self.validation_dir = self.config["validation_dir"]
         
@@ -36,22 +37,6 @@ class QualityMonitoringSystem:
         
         logger.info(f"데이터 품질 모니터링 시스템 초기화: config_path={config_path}")
     
-    def _load_config(self, config_path: str) -> Dict[str, Any]:
-        """구성 파일 로드
-        
-        Args:
-            config_path: 구성 파일 경로
-            
-        Returns:
-            구성 정보 딕셔너리
-        """
-        try:
-            with open(config_path, "r", encoding="utf-8") as file:
-                config = yaml.safe_load(file)
-            return config
-        except Exception as e:
-            logger.error(f"구성 파일 로드 오류: {e}")
-            raise
     
     async def create_expectation_suite(self, suite_name: str, expectations: List[Dict[str, Any]]) -> Dict[str, Any]:
         """기대치 스위트 생성
