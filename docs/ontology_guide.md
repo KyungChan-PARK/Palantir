@@ -8,6 +8,7 @@
 | `Topic`   | 학습 개념 | `topic_id (PK)`, `name_kr`, `name_en`, `difficulty` |
 | `Instructor` | 강사 | `instructor_id (PK)`, `name`, `department` |
 | `Assessment` | 시험·퀴즈 | `assessment_id (PK)`, `type`, `max_score` |
+| `Project` | 프로젝트 | `id (PK)`, `title`, `description`, `status` |
 
 ## 2. Relationship Types (`:MetaRel`)
 | Type | Domain ➜ Range | Semantics |
