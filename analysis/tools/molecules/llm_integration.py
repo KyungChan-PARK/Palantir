@@ -11,15 +11,16 @@ import os
 import time
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-import yaml
-from sentence_transformers import SentenceTransformer
-import chromadb
+import yaml  # type: ignore
+from sentence_transformers import SentenceTransformer  # type: ignore
+import chromadb  # type: ignore
 
 from analysis.tools.atoms.llm_tools import (
     ClaudeClient, create_completion, explain_code, generate_code, 
     load_prompt_template, refine_code, review_code, save_generated_code
 )
 from analysis.mcp_init import mcp
+from common.helpers import load_config
 
 # 로깅 설정
 logger = logging.getLogger("llm_integration")
@@ -227,7 +228,7 @@ class LocalKnowledgeRAG:
         Args:
             config_path: RAG 시스템 구성 파일 경로
         """
-        self.config = self._load_config(config_path)
+        self.config = load_config(config_path)
         self.embeddings_model = None
         self.vector_db = None
         self.collection = None
@@ -235,22 +236,6 @@ class LocalKnowledgeRAG:
         self._initialize_vector_db()
         logger.info("로컬 지식 베이스 RAG 시스템이 초기화되었습니다.")
     
-    def _load_config(self, config_path: str) -> Dict[str, Any]:
-        """RAG 시스템 구성 파일 로드
-        
-        Args:
-            config_path: 구성 파일 경로
-            
-        Returns:
-            구성 정보가 담긴 딕셔너리
-        """
-        try:
-            with open(config_path, 'r') as file:
-                config = yaml.safe_load(file)
-            return config
-        except Exception as e:
-            logger.error(f"구성 파일 로드 오류: {e}")
-            raise
     
     def _initialize_vector_db(self) -> None:
         """벡터 데이터베이스 초기화"""
