@@ -8,10 +8,16 @@ Claude 3.7 Sonnet API와의 통신 및 LLM 모델을 활용한 코드 생성, �
 import json
 import logging
 import os
-import yaml
+try:
+    import yaml
+except Exception:  # pragma: no cover - optional
+    yaml = None  # type: ignore
 from typing import Any, Dict, List, Optional, Union
 
-import anthropic
+try:
+    import anthropic
+except Exception:  # pragma: no cover - optional
+    anthropic = None  # type: ignore
 
 # 로깅 설정
 logger = logging.getLogger("llm_tools")
@@ -44,12 +50,14 @@ class ClaudeClient:
             logger.error(f"구성 파일 로드 오류: {e}")
             raise
     
-    def _initialize_client(self) -> anthropic.Anthropic:
+    def _initialize_client(self) -> Any:
         """Anthropic Claude 클라이언트 초기화
         
         Returns:
             Anthropic 클라이언트 인스턴스
         """
+        if anthropic is None:
+            raise ImportError("anthropic package is required for ClaudeClient")
         try:
             client = anthropic.Anthropic(api_key=self.config["claude"]["api_key"])
             logger.info("Claude API 클라이언트가 초기화되었습니다.")

@@ -11,9 +11,18 @@ import os
 import time
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-import yaml  # type: ignore
-from sentence_transformers import SentenceTransformer  # type: ignore
-import chromadb  # type: ignore
+try:
+    import yaml  # type: ignore
+except Exception:  # pragma: no cover - optional
+    yaml = None  # type: ignore
+try:
+    from sentence_transformers import SentenceTransformer  # type: ignore
+except Exception:  # pragma: no cover - optional
+    SentenceTransformer = None  # type: ignore
+try:
+    import chromadb  # type: ignore
+except Exception:  # pragma: no cover - optional
+    chromadb = None  # type: ignore
 
 from analysis.tools.atoms.llm_tools import (
     ClaudeClient, create_completion, explain_code, generate_code, 
