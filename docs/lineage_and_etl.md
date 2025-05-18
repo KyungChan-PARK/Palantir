@@ -1,5 +1,7 @@
 # Data Lineage & ETL Guide
 
+[ETL Quick Start](quick_start_etl.md)
+
 - **Airflow DAG ID** : `ontology_lineage_pipeline`
 - **Update Frequency** : `@hourly`
 - **Lineage Edge 패턴**

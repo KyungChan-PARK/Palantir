@@ -1,4 +1,6 @@
 # Codex 활용 예제 모음
+
+[Codex Quick Start](quick_start_codex.md)
 > ⚠️ 본 문서에서 언급된 Cursor AI 및 Codex CLI 관련 내용은 Cursor AI 및 Codex CLI가 담당하는 것으로 변경되었습니다.
 
 ## 1. 개요
