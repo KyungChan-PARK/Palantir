@@ -1,10 +1,15 @@
-claude:
-  api_key: "your_claude_api_key"
-  model: "claude-3-7-sonnet-20250219"
-  max_tokens: 4000
-
-prompts:
-  template_directory: "C:\\Users\\packr\\OneDrive\\palantir\\analysis\\tools\\organisms\\ai_pair_system\\prompts"
+# LLM 설정
+model:
+  name: "claude-3-7-sonnet-20250219"
+  temperature: 0.7
+  max_tokens: 4096
 
 output:
-  generated_code_dir: "C:\\Users\\packr\\OneDrive\\palantir\\output\\llm_generated"
+  generated_code_dir: "generated_code"
+  prompt_templates_dir: "prompt_templates"
+
+api:
+  endpoint: "https://api.anthropic.com/v1/messages"
+  timeout: 60
+  retry_attempts: 3
+  retry_delay: 1
