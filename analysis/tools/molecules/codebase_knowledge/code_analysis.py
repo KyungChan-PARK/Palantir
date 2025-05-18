@@ -191,10 +191,15 @@ async def analyze_relationships(
     
     for i, abstr in enumerate(abstractions):
         file_indices_str = ", ".join(map(str, abstr["files"]))
-        info_line = f"- Index {i}: {abstr['name']} (Relevant file indices: [{file_indices_str}])\n  Description: {abstr['description']}"
+        info_line = (
+            f"- Index {i}: {abstr['name']} (Relevant file indices: [{file_indices_str}])\n"
+            f"  Description: {abstr['description']}"
+        )
         context += info_line + "\n"
         abstraction_info_for_prompt.append(f"{i} # {abstr['name']}")  # Use potentially translated name
         all_relevant_indices.update(abstr["files"])
+
+    abstraction_listing = "\n".join(abstraction_info_for_prompt)
     
     # Add file content information to context
     context += "\nRelevant File Snippets (Referenced by Index and Path):\n"
@@ -219,7 +224,7 @@ async def analyze_relationships(
 Based on the following abstractions and relevant code snippets from the project `{project_name}`:
 
 List of Abstraction Indices and Names{list_lang_note}:
-{'\n'.join(abstraction_info_for_prompt)}
+{abstraction_listing}
 
 Context (Abstractions, Descriptions, Code):
 {context}
