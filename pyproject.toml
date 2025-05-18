@@ -35,6 +35,10 @@ test = [
     "pytest>=8.1.1"
 ]
 
+[project.scripts]
+update-docs = "analysis.tools.update_docs:main"
+mcp-integration = "analysis.mcp_integration:cli"
+
 [tool.setuptools.packages.find]
 where = ["."]
 

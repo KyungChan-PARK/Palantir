@@ -166,5 +166,10 @@ async def main():
     except Exception as e:
         print(f"오류 발생: {str(e)}")
 
-if __name__ == "__main__":
+def cli() -> None:
+    """Synchronously run the async ``main`` function for console scripts."""
     asyncio.run(main())
+
+
+if __name__ == "__main__":
+    cli()
