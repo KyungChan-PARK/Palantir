@@ -7,6 +7,16 @@
 
 팔란티어 파운드리 프로젝트는 AI 도구(Cursor AI, OpenAI Codex, Cursor AI 및 Codex CLI)를 개발 과정에 깊이 통합하여 개발 생산성을 향상시키고 코드 품질을 높은 수준으로 유지합니다. 이 문서는 AI 기반 개발 워크플로우의 각 단계를 상세히 설명하며, 효과적인 AI 활용 방법을 제시합니다.
 
+### 1.1 코드 스타일 검사
+
+프로젝트 루트에 `.pre-commit-config.yaml` 파일이 추가되었습니다. 처음 한 번 `pre-commit install` 명령으로 Git hook을 설치하고 커밋 전에는 다음 명령으로 전체 검사를 수행합니다.
+
+```bash
+pre-commit run --all-files
+```
+
+CI 파이프라인에서도 동일한 검사가 실행됩니다.
+
 ## 2. 개발 워크플로우 단계
 
 ### 2.1 계획 단계
