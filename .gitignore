@@ -42,6 +42,8 @@ logs/
 # Database
 *.db
 *.sqlite3
+*.pid
+data/postgres/
 
 # OS generated files
 .DS_Store
