@@ -38,6 +38,7 @@ logs/
 # Local development settings
 .env
 .env.local
+config/local_api_keys.json
 
 # Database
 *.db
