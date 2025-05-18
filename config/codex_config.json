@@ -9,7 +9,7 @@
         "auto-edit"
       ],
       "env": {
-        "OPENAI_API_KEY": "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"
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}"
       },
       "config": {
         "defaultTimeout": 60000,

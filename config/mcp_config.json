@@ -8,7 +8,7 @@
       "base_url": "http://localhost:8000/",
       "protocol": "JSON-RPC 2.0",
       "authentication": null,
-      "api_key": "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",
+      "api_key": "${OPENAI_API_KEY}",
       "methods": [
         "write_code",
         "explain_code",
