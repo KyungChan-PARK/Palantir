@@ -31,7 +31,7 @@
 ---
 ## 4. CI 체크리스트
 GitHub Actions `ci.yml` 에서 다음을 검증한다.
-- Markdown lint (`markdownlint-cli2`) – **TODO**: requirements에 추가
+- Markdown lint (`markdownlint-cli2`) – `docs/` 및 루트 Markdown 파일 자동 검사
 - Mermaid 플롯 렌더링 테스트 (Mermaid CLI) – 선택
 - 링크 확인 (`lychee`) – Broken link 방지
 
