@@ -7,6 +7,7 @@ by comparing different optimization strategies.
 
 import os
 import sys
+from common.path_utils import get_palantir_root
 import json
 import time
 import logging
@@ -17,7 +18,7 @@ import pandas as pd
 from pathlib import Path
 
 # Add the project root to the Python path
-sys.path.append('C:\\Users\\packr\\OneDrive\\palantir')
+sys.path.append(get_palantir_root().as_posix())
 
 # Import project modules
 from analysis.tools.atoms.generate_test_documents import create_test_document_set
@@ -38,7 +39,7 @@ logger = logging.getLogger('test_advanced_context')
 class AdvancedContextTester:
     """Test the advanced context optimization features."""
     
-    def __init__(self, base_dir='C:\\Users\\packr\\OneDrive\\palantir',
+    def __init__(self, base_dir=get_palantir_root().as_posix(),
                  test_dir='temp/test_optimization',
                  results_dir='output/reports/optimization'):
         """Initialize the tester.
@@ -550,7 +551,7 @@ def main():
 
 if __name__ == "__main__":
     # Ensure logs directory exists
-    os.makedirs(os.path.join('C:\\Users\\packr\\OneDrive\\palantir', 'logs'), exist_ok=True)
+    os.makedirs(os.path.join(get_palantir_root().as_posix(), 'logs'), exist_ok=True)
     
     try:
         main()

@@ -8,6 +8,7 @@ import json
 import pandas as pd
 from typing import Dict, Any, Optional, Union
 import io
+from common.path_utils import get_palantir_root
 
 from analysis.mcp_init import mcp
 
@@ -40,7 +41,7 @@ async def read_data(file_path: str, format: Optional[str] = None) -> Dict[str, A
         데이터와 메타데이터를 포함하는 딕셔너리
     """
     # 프로젝트 루트 경로 처리
-    base_dir = "C:\\Users\\packr\\OneDrive\\palantir"
+    base_dir = get_palantir_root().as_posix()
     if not os.path.isabs(file_path):
         file_path = os.path.join(base_dir, file_path)
     

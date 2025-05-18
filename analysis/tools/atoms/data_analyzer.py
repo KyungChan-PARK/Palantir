@@ -12,6 +12,7 @@ from scipy import stats
 import json
 import os
 
+from common.path_utils import get_palantir_root
 from analysis.mcp_init import mcp
 
 @mcp.tool(
@@ -59,7 +60,7 @@ async def analyze_data(
     
     # 기본 출력 디렉토리 설정
     if output_dir is None:
-        output_dir = os.path.join("C:\\Users\\packr\\OneDrive\\palantir", "output", "viz")
+        output_dir = os.path.join(get_palantir_root().as_posix(), "output", "viz")
     
     # 디렉토리가 없으면 생성
     os.makedirs(output_dir, exist_ok=True)

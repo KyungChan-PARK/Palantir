@@ -5,12 +5,13 @@
 
 import os
 import pandas as pd
+from common.path_utils import get_palantir_root
 import numpy as np
 from datetime import datetime, timedelta
 import random
 
 # 저장 디렉토리
-DATA_DIR = os.path.join("C:\\Users\\packr\\OneDrive\\palantir", "data")
+DATA_DIR = os.path.join(get_palantir_root().as_posix(), "data")
 os.makedirs(DATA_DIR, exist_ok=True)
 
 def generate_sales_data():

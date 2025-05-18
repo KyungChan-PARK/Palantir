@@ -9,6 +9,7 @@ import logging
 import os
 import time
 from datetime import datetime
+from common.path_utils import get_palantir_root
 from typing import Dict, List, Optional, Union
 import glob
 import matplotlib.pyplot as plt
@@ -348,8 +349,8 @@ if __name__ == "__main__":
     
     async def main():
         result = await test_document_performance(
-            test_dir="C:\\Users\\packr\\OneDrive\\palantir\\temp\\test_documents",
-            results_dir="C:\\Users\\packr\\OneDrive\\palantir\\output\\reports\\performance",
+            test_dir=os.path.join(get_palantir_root().as_posix(), "temp", "test_documents"),
+            results_dir=os.path.join(get_palantir_root().as_posix(), "output", "reports", "performance"),
             document_counts=[5]  # 테스트 목적으로 적은 수만 사용
         )
         print(f"결과: {result}")

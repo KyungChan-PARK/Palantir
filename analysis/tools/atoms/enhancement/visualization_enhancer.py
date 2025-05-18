@@ -8,6 +8,7 @@ to enhance the data analysis system's visualization capabilities.
 import os
 import json
 import datetime
+from common.path_utils import get_palantir_root
 import pandas as pd
 import numpy as np
 from typing import Dict, Any, List, Optional, Union, Tuple
@@ -121,7 +122,7 @@ async def create_interactive_chart(
         # Set default output file if not provided
         if output_file is None:
             timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-            output_dir = os.path.join("C:\\Users\\packr\\OneDrive\\palantir", "output", "viz", "interactive")
+            output_dir = os.path.join(get_palantir_root().as_posix(), "output", "viz", "interactive")
             os.makedirs(output_dir, exist_ok=True)
             output_file = os.path.join(output_dir, f"{chart_type}_{timestamp}.html")
         
@@ -353,7 +354,7 @@ async def generate_dashboard_component(
         # Set default output file if not provided
         if output_file is None:
             timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-            output_dir = os.path.join("C:\\Users\\packr\\OneDrive\\palantir", "output", "dashboard", "components")
+            output_dir = os.path.join(get_palantir_root().as_posix(), "output", "dashboard", "components")
             os.makedirs(output_dir, exist_ok=True)
             output_file = os.path.join(output_dir, f"{component_type}_{timestamp}.json")
         
