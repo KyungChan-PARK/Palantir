@@ -1,0 +1,46 @@
+{
+  "file_name": "customer_data.csv",
+  "model_name": "model_customer_data_loyalty_score",
+  "problem_type": "regression",
+  "target_column": "loyalty_score",
+  "features": [
+    "customer_id",
+    "age",
+    "gender",
+    "income",
+    "education",
+    "marital_status",
+    "location",
+    "segment",
+    "avg_purchase_amount",
+    "purchase_frequency",
+    "total_spending"
+  ],
+  "data_shape": [
+    500,
+    12
+  ],
+  "test_size": 0.2,
+  "model_results": [
+    {
+      "model_key": "linear_regression",
+      "performance": {
+        "r2_score": 0.785526066612718,
+        "mean_squared_error": 68.29244671088496,
+        "root_mean_squared_error": 8.263924413430036,
+        "mean_absolute_error": 6.256699240414345
+      },
+      "cv_scores": [
+        -49.883681121395014,
+        -65.12651115661198,
+        -75.73319372843497,
+        -58.490093071353314,
+        -67.54873886378978
+      ],
+      "best_params": {},
+      "feature_importance": {},
+      "model_file": "C:\\Users\\packr\\OneDrive\\palantir\\output\\models\\saved_models\\model_customer_data_loyalty_score_linear_regression.pkl"
+    }
+  ],
+  "best_model": "linear_regression"
+}

@@ -1,0 +1,63 @@
+version: "3.9"
+
+services:
+  neo4j:
+    image: neo4j:5.15-enterprise
+    container_name: neo4j
+    environment:
+      - NEO4J_ACCEPT_LICENSE_AGREEMENT=yes
+      - NEO4J_AUTH=neo4j/pass
+      - NEO4JLABS_PLUGINS=["n10s"]
+      - NEO4J_apoc_import_file_enabled=true
+    ports:
+      - "7474:7474"  # Browser UI
+      - "7687:7687"  # Bolt
+    volumes:
+      - ./data/neo4j:/data
+      - ./config/neo4j_ontology.n10s.yml:/var/lib/neo4j/import/neo4j_ontology.n10s.yml:ro
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres
+    environment:
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=ontology
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+
+  airflow:
+    image: apache/airflow:2.8.1-python3.11
+    container_name: airflow
+    depends_on:
+      - neo4j
+      - postgres
+    environment:
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=sqlite:////opt/airflow/airflow.db
+      - AIRFLOW_UID=50000
+      - AIRFLOW_CONN_ONTOLOGY_PG=postgresql://postgres:pass@postgres:5432/ontology
+      - PYTHONPATH=/opt/airflow
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/opt/airflow
+      - ./data:/opt/airflow/data
+    build:
+      context: .
+      dockerfile: docker/airflow.Dockerfile
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    command: >
+      bash -c "\
+        airflow db upgrade && \
+        airflow users create --username admin --password admin --firstname A --lastname I --role Admin --email admin@example.com && \
+        airflow scheduler & \
+        exec airflow webserver -p 8080\
+      " 

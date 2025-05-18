@@ -1,0 +1,58 @@
+airflow:
+  # Airflow 웹서버 URL
+  webserver_url: "http://localhost:8080"
+  
+  # Airflow 홈 디렉토리
+  airflow_home: "C:\\Users\\packr\\OneDrive\\palantir\\airflow"
+  
+  # DAG 파일 디렉토리
+  dags_folder: "C:\\Users\\packr\\OneDrive\\palantir\\airflow\\dags"
+  
+  # API 기본 경로
+  api_base_path: "/api/v1"
+  
+  # 관리자 사용자 이름
+  username: "admin"
+  
+  # 관리자 비밀번호
+  password: "admin"
+  
+  # 최대 동시 태스크 수
+  max_active_tasks: 4
+  
+  # 데이터베이스 연결 정보
+  database_conn: "sqlite:///C:\\Users\\packr\\OneDrive\\palantir\\airflow\\airflow.db"
+
+templates:
+  # 파이프라인 템플릿 디렉토리
+  template_dir: "C:\\Users\\packr\\OneDrive\\palantir\\analysis\\airflow\\templates"
+  
+  # 기본 템플릿 목록
+  default_templates:
+    - document_processing
+    - ontology_processing
+    - data_quality
+
+pipelines:
+  # 기본 파이프라인 구성
+  document_pipeline:
+    template: "document_processing"
+    schedule: "@daily"
+    input_path: "C:\\Users\\packr\\OneDrive\\palantir\\data\\documents"
+    output_path: "C:\\Users\\packr\\OneDrive\\palantir\\output\\processed_documents"
+    process_type: "all"
+  
+  ontology_pipeline:
+    template: "ontology_processing"
+    schedule: "@daily"
+    config_path: "C:\\Users\\packr\\OneDrive\\palantir\\config\\neo4j.yaml"
+    base_ontology_path: "C:\\Users\\packr\\OneDrive\\palantir\\data\\ontology\\base_ontology.json"
+    output_path: "C:\\Users\\packr\\OneDrive\\palantir\\output\\ontology\\current_ontology.json"
+  
+  quality_pipeline:
+    template: "data_quality"
+    schedule: "@daily"
+    data_path: "C:\\Users\\packr\\OneDrive\\palantir\\data\\sales_data.csv"
+    expectations_path: "C:\\Users\\packr\\OneDrive\\palantir\\data\\quality\\sales_expectations.json"
+    output_path: "C:\\Users\\packr\\OneDrive\\palantir\\output\\reports\\quality\\sales_quality_report.json"
+    data_type: "csv"

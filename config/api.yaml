@@ -1,0 +1,53 @@
+# API 시스템 구성
+
+# 서버 설정
+server:
+  host: "0.0.0.0"
+  port: 8000
+  
+  # CORS 허용 도메인
+  cors_origins:
+    - "http://localhost:5000"  # 대시보드 서버
+    - "http://localhost:3000"  # 개발 서버
+
+# API 문서 설정
+docs:
+  title: "팔란티어 파운드리 API"
+  description: "팔란티어 파운드리 시스템의 REST API"
+  version: "1.0.0"
+
+# 인증 설정
+auth:
+  # 인증 사용 여부
+  enabled: false
+  
+  # API 키 목록
+  api_keys:
+    - name: "dashboard"
+      key: "your-api-key-1"
+    - name: "admin"
+      key: "your-api-key-2"
+
+# 로깅 설정
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  log_file: "C:\\Users\\packr\\OneDrive\\palantir\\logs\\api.log"
+
+# 컴포넌트 설정
+components:
+  # 온톨로지 관리 시스템 설정
+  ontology:
+    config_path: "C:\\Users\\packr\\OneDrive\\palantir\\config\\neo4j.yaml"
+  
+  # 데이터 파이프라인 시스템 설정
+  pipeline:
+    airflow_config_dir: "C:\\Users\\packr\\OneDrive\\palantir\\analysis\\airflow"
+  
+  # 품질 모니터링 시스템 설정
+  quality:
+    config_path: "C:\\Users\\packr\\OneDrive\\palantir\\config\\quality.yaml"
+  
+  # LLM 통합 시스템 설정
+  llm:
+    config_path: "C:\\Users\\packr\\OneDrive\\palantir\\config\\llm.yaml"

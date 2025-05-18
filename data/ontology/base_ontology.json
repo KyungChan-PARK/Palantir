@@ -1,0 +1,312 @@
+{
+  "object_types": [
+    {
+      "name": "Document",
+      "display_name": "문서",
+      "description": "모든 종류의 문서 객체"
+    },
+    {
+      "name": "Folder",
+      "display_name": "폴더",
+      "description": "문서를 그룹화하는 폴더 객체"
+    },
+    {
+      "name": "Project",
+      "display_name": "프로젝트",
+      "description": "프로젝트 객체"
+    },
+    {
+      "name": "Task",
+      "display_name": "작업",
+      "description": "작업 객체"
+    },
+    {
+      "name": "Contact",
+      "display_name": "연락처",
+      "description": "인물 또는 조직 연락처 객체"
+    },
+    {
+      "name": "DataSource",
+      "display_name": "데이터 소스",
+      "description": "데이터 소스 객체"
+    }
+  ],
+  "properties": [
+    {
+      "name": "id",
+      "data_type": "string",
+      "display_name": "ID",
+      "description": "고유 식별자",
+      "required": true
+    },
+    {
+      "name": "title",
+      "data_type": "string",
+      "display_name": "제목",
+      "description": "객체 제목",
+      "required": true
+    },
+    {
+      "name": "description",
+      "data_type": "string",
+      "display_name": "설명",
+      "description": "객체 설명",
+      "required": false
+    },
+    {
+      "name": "content",
+      "data_type": "string",
+      "display_name": "내용",
+      "description": "문서 내용",
+      "required": false
+    },
+    {
+      "name": "status",
+      "data_type": "string",
+      "display_name": "상태",
+      "description": "객체 상태",
+      "required": true
+    },
+    {
+      "name": "created_at",
+      "data_type": "date",
+      "display_name": "생성일",
+      "description": "생성 날짜 및 시간",
+      "required": true
+    },
+    {
+      "name": "updated_at",
+      "data_type": "date",
+      "display_name": "수정일",
+      "description": "마지막 수정 날짜 및 시간",
+      "required": true
+    },
+    {
+      "name": "created_by",
+      "data_type": "string",
+      "display_name": "생성자",
+      "description": "생성한 사용자",
+      "required": false
+    },
+    {
+      "name": "updated_by",
+      "data_type": "string",
+      "display_name": "수정자",
+      "description": "마지막으로 수정한 사용자",
+      "required": false
+    },
+    {
+      "name": "path",
+      "data_type": "string",
+      "display_name": "경로",
+      "description": "파일 경로",
+      "required": false
+    },
+    {
+      "name": "file_size",
+      "data_type": "number",
+      "display_name": "파일 크기",
+      "description": "파일 크기 (바이트)",
+      "required": false
+    },
+    {
+      "name": "mime_type",
+      "data_type": "string",
+      "display_name": "MIME 타입",
+      "description": "파일 MIME 타입",
+      "required": false
+    },
+    {
+      "name": "tags",
+      "data_type": "array",
+      "display_name": "태그",
+      "description": "객체 태그 목록",
+      "required": false
+    },
+    {
+      "name": "priority",
+      "data_type": "string",
+      "display_name": "우선순위",
+      "description": "작업 우선순위 (높음, 중간, 낮음)",
+      "required": false
+    },
+    {
+      "name": "due_date",
+      "data_type": "date",
+      "display_name": "만기일",
+      "description": "작업 만기일",
+      "required": false
+    },
+    {
+      "name": "email",
+      "data_type": "string",
+      "display_name": "이메일",
+      "description": "이메일 주소",
+      "required": false
+    },
+    {
+      "name": "phone",
+      "data_type": "string",
+      "display_name": "전화번호",
+      "description": "전화번호",
+      "required": false
+    },
+    {
+      "name": "address",
+      "data_type": "string",
+      "display_name": "주소",
+      "description": "물리적 주소",
+      "required": false
+    },
+    {
+      "name": "connection_string",
+      "data_type": "string",
+      "display_name": "연결 문자열",
+      "description": "데이터 소스 연결 문자열",
+      "required": false
+    },
+    {
+      "name": "data_type",
+      "data_type": "string",
+      "display_name": "데이터 유형",
+      "description": "데이터 소스 유형 (SQL, CSV, API 등)",
+      "required": false
+    }
+  ],
+  "object_type_properties": [
+    {"object_type": "Document", "property": "id"},
+    {"object_type": "Document", "property": "title"},
+    {"object_type": "Document", "property": "description"},
+    {"object_type": "Document", "property": "content"},
+    {"object_type": "Document", "property": "status"},
+    {"object_type": "Document", "property": "created_at"},
+    {"object_type": "Document", "property": "updated_at"},
+    {"object_type": "Document", "property": "created_by"},
+    {"object_type": "Document", "property": "updated_by"},
+    {"object_type": "Document", "property": "path"},
+    {"object_type": "Document", "property": "file_size"},
+    {"object_type": "Document", "property": "mime_type"},
+    {"object_type": "Document", "property": "tags"},
+    
+    {"object_type": "Folder", "property": "id"},
+    {"object_type": "Folder", "property": "title"},
+    {"object_type": "Folder", "property": "description"},
+    {"object_type": "Folder", "property": "created_at"},
+    {"object_type": "Folder", "property": "updated_at"},
+    {"object_type": "Folder", "property": "created_by"},
+    {"object_type": "Folder", "property": "path"},
+    
+    {"object_type": "Project", "property": "id"},
+    {"object_type": "Project", "property": "title"},
+    {"object_type": "Project", "property": "description"},
+    {"object_type": "Project", "property": "status"},
+    {"object_type": "Project", "property": "created_at"},
+    {"object_type": "Project", "property": "updated_at"},
+    {"object_type": "Project", "property": "created_by"},
+    {"object_type": "Project", "property": "tags"},
+    
+    {"object_type": "Task", "property": "id"},
+    {"object_type": "Task", "property": "title"},
+    {"object_type": "Task", "property": "description"},
+    {"object_type": "Task", "property": "status"},
+    {"object_type": "Task", "property": "created_at"},
+    {"object_type": "Task", "property": "updated_at"},
+    {"object_type": "Task", "property": "created_by"},
+    {"object_type": "Task", "property": "updated_by"},
+    {"object_type": "Task", "property": "priority"},
+    {"object_type": "Task", "property": "due_date"},
+    {"object_type": "Task", "property": "tags"},
+    
+    {"object_type": "Contact", "property": "id"},
+    {"object_type": "Contact", "property": "title"},
+    {"object_type": "Contact", "property": "description"},
+    {"object_type": "Contact", "property": "created_at"},
+    {"object_type": "Contact", "property": "updated_at"},
+    {"object_type": "Contact", "property": "email"},
+    {"object_type": "Contact", "property": "phone"},
+    {"object_type": "Contact", "property": "address"},
+    {"object_type": "Contact", "property": "tags"},
+    
+    {"object_type": "DataSource", "property": "id"},
+    {"object_type": "DataSource", "property": "title"},
+    {"object_type": "DataSource", "property": "description"},
+    {"object_type": "DataSource", "property": "created_at"},
+    {"object_type": "DataSource", "property": "updated_at"},
+    {"object_type": "DataSource", "property": "connection_string"},
+    {"object_type": "DataSource", "property": "data_type"}
+  ],
+  "link_types": [
+    {
+      "name": "contains",
+      "display_name": "포함",
+      "description": "폴더가 문서 또는 다른 폴더를 포함함",
+      "source_type": "Folder",
+      "target_type": "Document",
+      "bidirectional": false
+    },
+    {
+      "name": "folder_contains_folder",
+      "display_name": "폴더 포함",
+      "description": "폴더가 다른 폴더를 포함함",
+      "source_type": "Folder",
+      "target_type": "Folder",
+      "bidirectional": false
+    },
+    {
+      "name": "related_to",
+      "display_name": "관련",
+      "description": "문서가 다른 문서와 관련됨",
+      "source_type": "Document",
+      "target_type": "Document",
+      "bidirectional": true
+    },
+    {
+      "name": "belongs_to_project",
+      "display_name": "프로젝트에 소속",
+      "description": "문서 또는 작업이 프로젝트에 소속됨",
+      "source_type": "Document",
+      "target_type": "Project",
+      "bidirectional": false
+    },
+    {
+      "name": "task_belongs_to_project",
+      "display_name": "작업이 프로젝트에 소속",
+      "description": "작업이 프로젝트에 소속됨",
+      "source_type": "Task",
+      "target_type": "Project",
+      "bidirectional": false
+    },
+    {
+      "name": "depends_on",
+      "display_name": "의존",
+      "description": "작업이 다른 작업에 의존함",
+      "source_type": "Task",
+      "target_type": "Task",
+      "bidirectional": false
+    },
+    {
+      "name": "assigned_to",
+      "display_name": "담당자",
+      "description": "작업이 담당자에게 할당됨",
+      "source_type": "Task",
+      "target_type": "Contact",
+      "bidirectional": false
+    },
+    {
+      "name": "created_by_contact",
+      "display_name": "작성자",
+      "description": "문서가 특정 연락처에 의해 작성됨",
+      "source_type": "Document",
+      "target_type": "Contact",
+      "bidirectional": false
+    },
+    {
+      "name": "sources_from",
+      "display_name": "출처",
+      "description": "문서가 특정 데이터 소스로부터 생성됨",
+      "source_type": "Document",
+      "target_type": "DataSource",
+      "bidirectional": false
+    }
+  ]
+}

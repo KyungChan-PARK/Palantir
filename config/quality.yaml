@@ -1,0 +1,28 @@
+# 데이터 품질 모니터링 시스템 구성
+
+# 기대치 디렉토리 (기대치 스위트가 저장되는 위치)
+expectations_dir: "C:\\Users\\packr\\OneDrive\\palantir\\data\\quality\\expectations"
+
+# 검증 결과 디렉토리 (검증 결과가 저장되는 위치)
+validation_dir: "C:\\Users\\packr\\OneDrive\\palantir\\output\\quality_reports\\validations"
+
+# 보고서 디렉토리 (품질 보고서가 저장되는 위치)
+reports_dir: "C:\\Users\\packr\\OneDrive\\palantir\\output\\quality_reports"
+
+# 검증 설정
+validation:
+  # 기본 검증 옵션
+  default_options:
+    # 검증 실패시 예외 발생 여부
+    raise_on_failure: false
+    
+    # 최대 실패 허용 수
+    max_failures: 10
+
+# 알림 설정
+notifications:
+  # 검증 실패시 알림 전송 여부
+  on_validation_failure: true
+  
+  # 품질 보고서 생성시 알림 전송 여부
+  on_report_generation: true

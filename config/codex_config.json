@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "openai_codex": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@openai/codex",
+        "--approval-mode",
+        "auto-edit"
+      ],
+      "env": {
+        "OPENAI_API_KEY": "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"
+      },
+      "config": {
+        "defaultTimeout": 60000,
+        "maxRetries": 3
+      }
+    }
+  }
+}

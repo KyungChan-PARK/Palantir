@@ -1,0 +1,17 @@
+# Codex CLI 설정
+model: "o4-mini"  # 사용할 모델
+approval_mode: "suggest"  # 코드 생성 모드
+output_dir: "output/generated_code"  # 생성된 코드 저장 경로
+max_tokens: 2048  # 최대 토큰 수
+temperature: 0.7  # 생성 다양성 조절
+
+# 프로젝트 관련 설정
+project_name: "palantir"
+language: "python"
+framework: "fastapi"
+
+# 코드 생성 규칙
+code_style:
+  max_line_length: 100
+  use_type_hints: true
+  docstring_style: "google" 

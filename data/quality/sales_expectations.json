@@ -1,0 +1,33 @@
+{
+  "column_expectations": {
+    "product_id": {
+      "not_null": true,
+      "unique": true
+    },
+    "product_name": {
+      "not_null": true
+    },
+    "category": {
+      "not_null": true,
+      "allowed_values": ["전자제품", "가구", "의류", "식품", "도서"]
+    },
+    "price": {
+      "not_null": true,
+      "min_value": 0
+    },
+    "quantity": {
+      "not_null": true,
+      "min_value": 0
+    },
+    "sale_date": {
+      "not_null": true
+    },
+    "customer_id": {
+      "not_null": false
+    }
+  },
+  "table_expectations": {
+    "row_count_min": 1,
+    "required_columns": ["product_id", "product_name", "category", "price", "quantity", "sale_date"]
+  }
+}

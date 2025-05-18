@@ -1,0 +1,33 @@
+# RAG 시스템 설정
+
+# 임베딩 모델 설정
+embedding_model: "sentence-transformers/all-MiniLM-L6-v2"
+embedding_dimension: 384
+
+# 벡터 저장소 설정
+vector_store:
+  type: "chromadb"
+  persist_directory: "data/vector_store"
+  collection_name: "documents"
+
+# 문서 처리 설정
+document_processing:
+  chunk_size: 1000
+  chunk_overlap: 200
+  max_chunks_per_document: 100
+
+# 검색 설정
+search:
+  top_k: 5
+  similarity_threshold: 0.7
+
+# 캐시 설정
+cache:
+  enabled: true
+  directory: "data/cache/embeddings"
+  max_size: 1000  # MB
+
+# 로깅 설정
+logging:
+  level: "INFO"
+  file: "logs/rag_system.log"

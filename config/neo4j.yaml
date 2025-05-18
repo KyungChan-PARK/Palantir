@@ -1,0 +1,8 @@
+neo4j:
+  uri: "neo4j://localhost:7687"
+  user: "neo4j"
+  password: "password"
+
+ontology:
+  base_ontology_path: "C:\\Users\\packr\\OneDrive\\palantir\\data\\ontology\\base_ontology.json"
+  output_directory: "C:\\Users\\packr\\OneDrive\\palantir\\output\\ontology"

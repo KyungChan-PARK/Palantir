@@ -1,0 +1,219 @@
+{
+  "question": "What is the optimal channel mix to improve ROI of marketing campaigns?",
+  "analysis_plan": {
+    "run_eda": true,
+    "analysis_types": [
+      "descriptive",
+      "correlation"
+    ],
+    "run_predictive_modeling": false,
+    "problem_type": null,
+    "target_variable": "marketing",
+    "target_columns": null,
+    "feature_columns": null,
+    "time_dimension": null,
+    "group_dimension": null
+  },
+  "data_sources": {
+    "C:\\Users\\packr\\OneDrive\\palantir\\data\\marketing_data.csv": {
+      "success": true,
+      "shape": [
+        50,
+        16
+      ],
+      "columns": [
+        "campaign_id",
+        "campaign_name",
+        "type",
+        "channel",
+        "start_date",
+        "end_date",
+        "budget",
+        "spend",
+        "impressions",
+        "clicks",
+        "conversions",
+        "ctr",
+        "cvr",
+        "cpa",
+        "revenue",
+        "roi"
+      ]
+    },
+    "C:\\Users\\packr\\OneDrive\\palantir\\data\\sales_data.csv": {
+      "success": true,
+      "shape": [
+        1000,
+        7
+      ],
+      "columns": [
+        "date",
+        "product",
+        "region",
+        "channel",
+        "quantity",
+        "price",
+        "revenue"
+      ]
+    }
+  },
+  "insights": [
+    {
+      "type": "eda",
+      "description": "[descriptive] 'clicks' 열에 이상치가 많습니다 (6.0%)",
+      "confidence": "high",
+      "source": "exploratory_analysis"
+    },
+    {
+      "type": "eda",
+      "description": "[descriptive] 'cpa' 열에 이상치가 많습니다 (8.0%)",
+      "confidence": "high",
+      "source": "exploratory_analysis"
+    },
+    {
+      "type": "eda",
+      "description": "[descriptive] 'roi' 열에 이상치가 많습니다 (10.0%)",
+      "confidence": "high",
+      "source": "exploratory_analysis"
+    },
+    {
+      "type": "eda",
+      "description": "[descriptive] 'clicks' 열이 오른쪽으로 치우친 분포를 보입니다 (왜도: 1.09)",
+      "confidence": "high",
+      "source": "exploratory_analysis"
+    },
+    {
+      "type": "eda",
+      "description": "[descriptive] 'conversions' 열이 오른쪽으로 치우친 분포를 보입니다 (왜도: 1.53)",
+      "confidence": "high",
+      "source": "exploratory_analysis"
+    },
+    {
+      "type": "eda",
+      "description": "[descriptive] 'cpa' 열이 오른쪽으로 치우친 분포를 보입니다 (왜도: 1.34)",
+      "confidence": "high",
+      "source": "exploratory_analysis"
+    },
+    {
+      "type": "eda",
+      "description": "[descriptive] 'revenue' 열이 오른쪽으로 치우친 분포를 보입니다 (왜도: 1.53)",
+      "confidence": "high",
+      "source": "exploratory_analysis"
+    },
+    {
+      "type": "eda",
+      "description": "[descriptive] 'roi' 열이 오른쪽으로 치우친 분포를 보입니다 (왜도: 3.10)",
+      "confidence": "high",
+      "source": "exploratory_analysis"
+    },
+    {
+      "type": "eda",
+      "description": "[correlation] 'budget'와 'spend' 사이에 매우 강한 양의 상관 관계가 있습니다 (r=0.98)",
+      "confidence": "high",
+      "source": "exploratory_analysis"
+    },
+    {
+      "type": "eda",
+      "description": "[correlation] 'clicks'와 'conversions' 사이에 매우 강한 양의 상관 관계가 있습니다 (r=0.92)",
+      "confidence": "high",
+      "source": "exploratory_analysis"
+    },
+    {
+      "type": "eda",
+      "description": "[correlation] 'clicks'와 'revenue' 사이에 매우 강한 양의 상관 관계가 있습니다 (r=0.92)",
+      "confidence": "high",
+      "source": "exploratory_analysis"
+    },
+    {
+      "type": "eda",
+      "description": "[correlation] 'conversions'와 'revenue' 사이에 매우 강한 양의 상관 관계가 있습니다 (r=1.00)",
+      "confidence": "high",
+      "source": "exploratory_analysis"
+    },
+    {
+      "type": "correlation",
+      "description": "'budget'와 'spend' 사이에 매우 강한 양의 상관 관계가 있습니다 (r=0.98)",
+      "confidence": "high",
+      "source": "correlation_analysis"
+    },
+    {
+      "type": "correlation",
+      "description": "'clicks'와 'conversions' 사이에 매우 강한 양의 상관 관계가 있습니다 (r=0.92)",
+      "confidence": "high",
+      "source": "correlation_analysis"
+    },
+    {
+      "type": "correlation",
+      "description": "'clicks'와 'revenue' 사이에 매우 강한 양의 상관 관계가 있습니다 (r=0.92)",
+      "confidence": "high",
+      "source": "correlation_analysis"
+    },
+    {
+      "type": "correlation",
+      "description": "'conversions'와 'revenue' 사이에 매우 강한 양의 상관 관계가 있습니다 (r=1.00)",
+      "confidence": "high",
+      "source": "correlation_analysis"
+    }
+  ],
+  "recommendations": [
+    {
+      "type": "data_quality",
+      "title": "데이터 품질 개선",
+      "description": "분석의 정확도를 높이기 위해 데이터 품질 문제를 해결하십시오.",
+      "steps": [
+        "이상치 탐지 및 처리 메커니즘 구현",
+        "데이터 검증 프로세스 구축",
+        "정기적인 데이터 품질 감사 수행"
+      ],
+      "priority": "high"
+    },
+    {
+      "type": "additional_analysis",
+      "title": "예측 모델링 수행",
+      "description": "식별된 패턴을 기반으로 예측 모델을 구축하여 미래 값을 예측하십시오.",
+      "steps": [
+        "목표 변수 선정",
+        "주요 특성 선택",
+        "여러 모델링 알고리즘 테스트",
+        "최적 모델 선택 및 세부 조정"
+      ],
+      "priority": "medium"
+    },
+    {
+      "type": "additional_analysis",
+      "title": "세분화 분석 수행",
+      "description": "데이터를 의미 있는 세그먼트로 나누어 패턴과 차이점을 식별하십시오.",
+      "steps": [
+        "세분화 기준 정의",
+        "그룹별 분석 수행",
+        "그룹 간 주요 차이점 식별",
+        "타겟 세그먼트에 대한 맞춤형 전략 개발"
+      ],
+      "priority": "medium"
+    },
+    {
+      "type": "decision_support",
+      "title": "데이터 기반 의사 결정 프로세스 구축",
+      "description": "분석 결과를 바탕으로 체계적인 의사 결정 프로세스를 구축하십시오.",
+      "steps": [
+        "주요 의사 결정 지점 식별",
+        "각 결정에 필요한 데이터 및 분석 정의",
+        "의사 결정 기준 및 임계값 설정",
+        "결정 결과 추적 및 피드백 루프 구현"
+      ],
+      "priority": "high"
+    },
+    {
+      "type": "visualization",
+      "title": "의사 결정 대시보드 개발",
+      "description": "주요 지표와 통찰을 시각화하는 대시보드를 개발하여 의사 결정 과정을 지원하십시오.",
+      "steps": [
+        "핵심 성과 지표(KPI) 정의",
+        "직관적인 시각화 설계",
+        "실시간 업데이트 메커니즘 구현",
+        "사용자 피드백을 반영한 대시보드 개선"
+      ],
+      "priority": "medium"
+    }
+  ]
+}

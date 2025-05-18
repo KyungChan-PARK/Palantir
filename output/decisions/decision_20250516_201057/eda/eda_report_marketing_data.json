@@ -1,0 +1,709 @@
+{
+  "file_name": "marketing_data.csv",
+  "file_path": "data/marketing_data.csv",
+  "data_info": {
+    "shape": [
+      50,
+      16
+    ],
+    "columns": [
+      "campaign_id",
+      "campaign_name",
+      "type",
+      "channel",
+      "start_date",
+      "end_date",
+      "budget",
+      "spend",
+      "impressions",
+      "clicks",
+      "conversions",
+      "ctr",
+      "cvr",
+      "cpa",
+      "revenue",
+      "roi"
+    ],
+    "dtypes": {
+      "campaign_id": "int64",
+      "campaign_name": "object",
+      "type": "object",
+      "channel": "object",
+      "start_date": "object",
+      "end_date": "object",
+      "budget": "int64",
+      "spend": "int64",
+      "impressions": "int64",
+      "clicks": "int64",
+      "conversions": "int64",
+      "ctr": "float64",
+      "cvr": "float64",
+      "cpa": "float64",
+      "revenue": "int64",
+      "roi": "float64"
+    }
+  },
+  "preprocessing": {
+    "remove_nulls": {
+      "success": true,
+      "operation_results": {
+        "old_shape": [
+          50,
+          16
+        ],
+        "new_shape": [
+          50,
+          16
+        ],
+        "removed_rows": 0
+      }
+    }
+  },
+  "analysis": {
+    "descriptive": {
+      "success": true,
+      "analysis_type": "descriptive",
+      "numeric_statistics": {
+        "count": {
+          "campaign_id": 50.0,
+          "budget": 50.0,
+          "spend": 50.0,
+          "impressions": 50.0,
+          "clicks": 50.0,
+          "conversions": 50.0,
+          "ctr": 50.0,
+          "cvr": 50.0,
+          "cpa": 50.0,
+          "revenue": 50.0,
+          "roi": 50.0
+        },
+        "mean": {
+          "campaign_id": 25.5,
+          "budget": 28583937.42,
+          "spend": 26685693.46,
+          "impressions": 575430.96,
+          "clicks": 18411.06,
+          "conversions": 1955.16,
+          "ctr": 0.032094954249892185,
+          "cvr": 0.10554623432989775,
+          "cpa": 27829.472213623652,
+          "revenue": 293274000.0,
+          "roi": 12.688950376512434
+        },
+        "std": {
+          "campaign_id": 14.577379737113251,
+          "budget": 12811932.635105338,
+          "spend": 12096091.612320492,
+          "impressions": 271668.45382230607,
+          "clicks": 10284.98901889426,
+          "conversions": 1350.8473736654248,
+          "ctr": 0.010176124439646687,
+          "cvr": 0.031205474782000742,
+          "cpa": 45298.872000038384,
+          "revenue": 202627106.0498137,
+          "roi": 11.352540743918402
+        },
+        "min": {
+          "campaign_id": 1.0,
+          "budget": 6830414.0,
+          "spend": 5514744.0,
+          "impressions": 53179.0,
+          "clicks": 1252.0,
+          "conversions": 122.0,
+          "ctr": 0.0121774686094564,
+          "cvr": 0.0525442018759857,
+          "cpa": 2511.893970893971,
+          "revenue": 18300000.0,
+          "roi": -0.4975026154576982
+        },
+        "25%": {
+          "campaign_id": 13.25,
+          "budget": 17999828.5,
+          "spend": 17028651.0,
+          "impressions": 361617.0,
+          "clicks": 9851.0,
+          "conversions": 897.0,
+          "ctr": 0.0244772062416878,
+          "cvr": 0.07905379503266888,
+          "cpa": 8195.020627702503,
+          "revenue": 134550000.0,
+          "roi": 4.4566467750429934
+        },
+        "50%": {
+          "campaign_id": 25.5,
+          "budget": 27621330.5,
+          "spend": 25772138.5,
+          "impressions": 611987.0,
+          "clicks": 17323.0,
+          "conversions": 1548.5,
+          "ctr": 0.034499202088808203,
+          "cvr": 0.1063506068877555,
+          "cpa": 13094.457881440418,
+          "revenue": 232275000.0,
+          "roi": 10.456986391287273
+        },
+        "75%": {
+          "campaign_id": 37.75,
+          "budget": 41225228.25,
+          "spend": 37333549.0,
+          "impressions": 791769.75,
+          "clicks": 26854.5,
+          "conversions": 2771.5,
+          "ctr": 0.039261881445112876,
+          "cvr": 0.1330078051743478,
+          "cpa": 27489.85225159293,
+          "revenue": 415725000.0,
+          "roi": 17.303859114319216
+        },
+        "max": {
+          "campaign_id": 50.0,
+          "budget": 48304131.0,
+          "spend": 48229821.0,
+          "impressions": 997140.0,
+          "clicks": 37623.0,
+          "conversions": 5561.0,
+          "ctr": 0.0488155971240192,
+          "cvr": 0.1495736840689636,
+          "cpa": 298509.01639344264,
+          "revenue": 834150000.0,
+          "roi": 58.71589634677762
+        }
+      },
+      "categorical_statistics": {
+        "type": {
+          "unique_values": 6,
+          "top_values": {
+            "시즌": 13,
+            "할인": 10,
+            "프로모션": 9,
+            "충성도": 7,
+            "신제품": 7
+          },
+          "top_percentages": {
+            "시즌": 26.0,
+            "할인": 20.0,
+            "프로모션": 18.0,
+            "충성도": 14.000000000000002,
+            "신제품": 14.000000000000002
+          }
+        },
+        "channel": {
+          "unique_values": 7,
+          "top_values": {
+            "TV": 10,
+            "오프라인": 10,
+            "라디오": 9,
+            "검색광고": 7,
+            "이메일": 6
+          },
+          "top_percentages": {
+            "TV": 20.0,
+            "오프라인": 20.0,
+            "라디오": 18.0,
+            "검색광고": 14.000000000000002,
+            "이메일": 12.0
+          }
+        }
+      },
+      "null_information": {
+        "counts": {
+          "campaign_id": 0,
+          "campaign_name": 0,
+          "type": 0,
+          "channel": 0,
+          "start_date": 0,
+          "end_date": 0,
+          "budget": 0,
+          "spend": 0,
+          "impressions": 0,
+          "clicks": 0,
+          "conversions": 0,
+          "ctr": 0,
+          "cvr": 0,
+          "cpa": 0,
+          "revenue": 0,
+          "roi": 0
+        },
+        "percentages": {
+          "campaign_id": 0.0,
+          "campaign_name": 0.0,
+          "type": 0.0,
+          "channel": 0.0,
+          "start_date": 0.0,
+          "end_date": 0.0,
+          "budget": 0.0,
+          "spend": 0.0,
+          "impressions": 0.0,
+          "clicks": 0.0,
+          "conversions": 0.0,
+          "ctr": 0.0,
+          "cvr": 0.0,
+          "cpa": 0.0,
+          "revenue": 0.0,
+          "roi": 0.0
+        }
+      },
+      "insights": [
+        "'cpa' 열에 이상치가 많습니다 (12.0%)",
+        "'cpa' 열이 오른쪽으로 치우친 분포를 보입니다 (왜도: 4.70)",
+        "'roi' 열이 오른쪽으로 치우친 분포를 보입니다 (왜도: 1.73)"
+      ],
+      "visualizations": [
+        {
+          "type": "distribution",
+          "column": "campaign_id",
+          "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_marketing_data\\descriptive\\descriptive_campaign_id_distribution.png",
+          "analysis_type": "descriptive"
+        },
+        {
+          "type": "distribution",
+          "column": "budget",
+          "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_marketing_data\\descriptive\\descriptive_budget_distribution.png",
+          "analysis_type": "descriptive"
+        },
+        {
+          "type": "distribution",
+          "column": "spend",
+          "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_marketing_data\\descriptive\\descriptive_spend_distribution.png",
+          "analysis_type": "descriptive"
+        },
+        {
+          "type": "distribution",
+          "column": "impressions",
+          "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_marketing_data\\descriptive\\descriptive_impressions_distribution.png",
+          "analysis_type": "descriptive"
+        },
+        {
+          "type": "distribution",
+          "column": "clicks",
+          "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_marketing_data\\descriptive\\descriptive_clicks_distribution.png",
+          "analysis_type": "descriptive"
+        },
+        {
+          "type": "frequency",
+          "column": "type",
+          "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_marketing_data\\descriptive\\descriptive_type_frequency.png",
+          "analysis_type": "descriptive"
+        },
+        {
+          "type": "frequency",
+          "column": "channel",
+          "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_marketing_data\\descriptive\\descriptive_channel_frequency.png",
+          "analysis_type": "descriptive"
+        }
+      ]
+    },
+    "correlation": {
+      "success": true,
+      "analysis_type": "correlation",
+      "correlation_matrix": {
+        "campaign_id": {
+          "campaign_id": 1.0,
+          "budget": -0.002,
+          "spend": -0.016,
+          "impressions": 0.07,
+          "clicks": 0.026,
+          "conversions": -0.131,
+          "ctr": -0.074,
+          "cvr": -0.327,
+          "cpa": -0.023,
+          "revenue": -0.131,
+          "roi": -0.103
+        },
+        "budget": {
+          "campaign_id": -0.002,
+          "budget": 1.0,
+          "spend": 0.983,
+          "impressions": -0.075,
+          "clicks": -0.056,
+          "conversions": 0.015,
+          "ctr": -0.111,
+          "cvr": 0.067,
+          "cpa": 0.371,
+          "revenue": 0.015,
+          "roi": -0.538
+        },
+        "spend": {
+          "campaign_id": -0.016,
+          "budget": 0.983,
+          "spend": 1.0,
+          "impressions": -0.063,
+          "clicks": -0.044,
+          "conversions": 0.022,
+          "ctr": -0.105,
+          "cvr": 0.072,
+          "cpa": 0.355,
+          "revenue": 0.022,
+          "roi": -0.535
+        },
+        "impressions": {
+          "campaign_id": 0.07,
+          "budget": -0.075,
+          "spend": -0.063,
+          "impressions": 1.0,
+          "clicks": 0.805,
+          "conversions": 0.622,
+          "ctr": -0.021,
+          "cvr": -0.12,
+          "cpa": -0.477,
+          "revenue": 0.622,
+          "roi": 0.509
+        },
+        "clicks": {
+          "campaign_id": 0.026,
+          "budget": -0.056,
+          "spend": -0.044,
+          "impressions": 0.805,
+          "clicks": 1.0,
+          "conversions": 0.848,
+          "ctr": 0.515,
+          "cvr": 0.038,
+          "cpa": -0.516,
+          "revenue": 0.848,
+          "roi": 0.618
+        },
+        "conversions": {
+          "campaign_id": -0.131,
+          "budget": 0.015,
+          "spend": 0.022,
+          "impressions": 0.622,
+          "clicks": 0.848,
+          "conversions": 1.0,
+          "ctr": 0.503,
+          "cvr": 0.514,
+          "cpa": -0.462,
+          "revenue": 1.0,
+          "roi": 0.703
+        },
+        "ctr": {
+          "campaign_id": -0.074,
+          "budget": -0.111,
+          "spend": -0.105,
+          "impressions": -0.021,
+          "clicks": 0.515,
+          "conversions": 0.503,
+          "ctr": 1.0,
+          "cvr": 0.195,
+          "cpa": -0.371,
+          "revenue": 0.503,
+          "roi": 0.349
+        },
+        "cvr": {
+          "campaign_id": -0.327,
+          "budget": 0.067,
+          "spend": 0.072,
+          "impressions": -0.12,
+          "clicks": 0.038,
+          "conversions": 0.514,
+          "ctr": 0.195,
+          "cvr": 1.0,
+          "cpa": -0.116,
+          "revenue": 0.514,
+          "roi": 0.344
+        },
+        "cpa": {
+          "campaign_id": -0.023,
+          "budget": 0.371,
+          "spend": 0.355,
+          "impressions": -0.477,
+          "clicks": -0.516,
+          "conversions": -0.462,
+          "ctr": -0.371,
+          "cvr": -0.116,
+          "cpa": 1.0,
+          "revenue": -0.462,
+          "roi": -0.458
+        },
+        "revenue": {
+          "campaign_id": -0.131,
+          "budget": 0.015,
+          "spend": 0.022,
+          "impressions": 0.622,
+          "clicks": 0.848,
+          "conversions": 1.0,
+          "ctr": 0.503,
+          "cvr": 0.514,
+          "cpa": -0.462,
+          "revenue": 1.0,
+          "roi": 0.703
+        },
+        "roi": {
+          "campaign_id": -0.103,
+          "budget": -0.538,
+          "spend": -0.535,
+          "impressions": 0.509,
+          "clicks": 0.618,
+          "conversions": 0.703,
+          "ctr": 0.349,
+          "cvr": 0.344,
+          "cpa": -0.458,
+          "revenue": 0.703,
+          "roi": 1.0
+        }
+      },
+      "strong_correlations": [
+        {
+          "column1": "budget",
+          "column2": "spend",
+          "correlation": 0.983,
+          "type": "양의",
+          "strength": "매우 강한"
+        },
+        {
+          "column1": "impressions",
+          "column2": "clicks",
+          "correlation": 0.805,
+          "type": "양의",
+          "strength": "강한"
+        },
+        {
+          "column1": "clicks",
+          "column2": "conversions",
+          "correlation": 0.848,
+          "type": "양의",
+          "strength": "강한"
+        },
+        {
+          "column1": "clicks",
+          "column2": "revenue",
+          "correlation": 0.848,
+          "type": "양의",
+          "strength": "강한"
+        },
+        {
+          "column1": "conversions",
+          "column2": "revenue",
+          "correlation": 1.0,
+          "type": "양의",
+          "strength": "매우 강한"
+        },
+        {
+          "column1": "conversions",
+          "column2": "roi",
+          "correlation": 0.703,
+          "type": "양의",
+          "strength": "강한"
+        },
+        {
+          "column1": "revenue",
+          "column2": "roi",
+          "correlation": 0.703,
+          "type": "양의",
+          "strength": "강한"
+        }
+      ],
+      "insights": [
+        "'budget'와 'spend' 사이에 매우 강한 양의 상관 관계가 있습니다 (r=0.98)",
+        "'impressions'와 'clicks' 사이에 강한 양의 상관 관계가 있습니다 (r=0.81)",
+        "'clicks'와 'conversions' 사이에 강한 양의 상관 관계가 있습니다 (r=0.85)",
+        "'clicks'와 'revenue' 사이에 강한 양의 상관 관계가 있습니다 (r=0.85)",
+        "'conversions'와 'revenue' 사이에 매우 강한 양의 상관 관계가 있습니다 (r=1.00)",
+        "'conversions'와 'roi' 사이에 강한 양의 상관 관계가 있습니다 (r=0.70)",
+        "'revenue'와 'roi' 사이에 강한 양의 상관 관계가 있습니다 (r=0.70)"
+      ],
+      "visualizations": [
+        {
+          "type": "heatmap",
+          "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_marketing_data\\correlation\\correlation_heatmap.png",
+          "analysis_type": "correlation"
+        },
+        {
+          "type": "scatter",
+          "column1": "budget",
+          "column2": "spend",
+          "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_marketing_data\\correlation\\correlation_scatter_budget_spend.png",
+          "analysis_type": "correlation"
+        },
+        {
+          "type": "scatter",
+          "column1": "impressions",
+          "column2": "clicks",
+          "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_marketing_data\\correlation\\correlation_scatter_impressions_clicks.png",
+          "analysis_type": "correlation"
+        },
+        {
+          "type": "scatter",
+          "column1": "clicks",
+          "column2": "conversions",
+          "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_marketing_data\\correlation\\correlation_scatter_clicks_conversions.png",
+          "analysis_type": "correlation"
+        },
+        {
+          "type": "scatter",
+          "column1": "clicks",
+          "column2": "revenue",
+          "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_marketing_data\\correlation\\correlation_scatter_clicks_revenue.png",
+          "analysis_type": "correlation"
+        },
+        {
+          "type": "scatter",
+          "column1": "conversions",
+          "column2": "revenue",
+          "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_marketing_data\\correlation\\correlation_scatter_conversions_revenue.png",
+          "analysis_type": "correlation"
+        }
+      ]
+    }
+  },
+  "insights": [
+    "[descriptive] 'cpa' 열에 이상치가 많습니다 (12.0%)",
+    "[descriptive] 'cpa' 열이 오른쪽으로 치우친 분포를 보입니다 (왜도: 4.70)",
+    "[descriptive] 'roi' 열이 오른쪽으로 치우친 분포를 보입니다 (왜도: 1.73)",
+    "[correlation] 'budget'와 'spend' 사이에 매우 강한 양의 상관 관계가 있습니다 (r=0.98)",
+    "[correlation] 'impressions'와 'clicks' 사이에 강한 양의 상관 관계가 있습니다 (r=0.81)",
+    "[correlation] 'clicks'와 'conversions' 사이에 강한 양의 상관 관계가 있습니다 (r=0.85)",
+    "[correlation] 'clicks'와 'revenue' 사이에 강한 양의 상관 관계가 있습니다 (r=0.85)",
+    "[correlation] 'conversions'와 'revenue' 사이에 매우 강한 양의 상관 관계가 있습니다 (r=1.00)",
+    "[correlation] 'conversions'와 'roi' 사이에 강한 양의 상관 관계가 있습니다 (r=0.70)",
+    "[correlation] 'revenue'와 'roi' 사이에 강한 양의 상관 관계가 있습니다 (r=0.70)"
+  ],
+  "visualizations": [
+    {
+      "type": "distribution",
+      "column": "campaign_id",
+      "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_marketing_data\\descriptive\\descriptive_campaign_id_distribution.png",
+      "analysis_type": "descriptive"
+    },
+    {
+      "type": "distribution",
+      "column": "budget",
+      "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_marketing_data\\descriptive\\descriptive_budget_distribution.png",
+      "analysis_type": "descriptive"
+    },
+    {
+      "type": "distribution",
+      "column": "spend",
+      "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_marketing_data\\descriptive\\descriptive_spend_distribution.png",
+      "analysis_type": "descriptive"
+    },
+    {
+      "type": "distribution",
+      "column": "impressions",
+      "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_marketing_data\\descriptive\\descriptive_impressions_distribution.png",
+      "analysis_type": "descriptive"
+    },
+    {
+      "type": "distribution",
+      "column": "clicks",
+      "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_marketing_data\\descriptive\\descriptive_clicks_distribution.png",
+      "analysis_type": "descriptive"
+    },
+    {
+      "type": "frequency",
+      "column": "type",
+      "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_marketing_data\\descriptive\\descriptive_type_frequency.png",
+      "analysis_type": "descriptive"
+    },
+    {
+      "type": "frequency",
+      "column": "channel",
+      "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_marketing_data\\descriptive\\descriptive_channel_frequency.png",
+      "analysis_type": "descriptive"
+    },
+    {
+      "type": "heatmap",
+      "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_marketing_data\\correlation\\correlation_heatmap.png",
+      "analysis_type": "correlation"
+    },
+    {
+      "type": "scatter",
+      "column1": "budget",
+      "column2": "spend",
+      "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_marketing_data\\correlation\\correlation_scatter_budget_spend.png",
+      "analysis_type": "correlation"
+    },
+    {
+      "type": "scatter",
+      "column1": "impressions",
+      "column2": "clicks",
+      "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_marketing_data\\correlation\\correlation_scatter_impressions_clicks.png",
+      "analysis_type": "correlation"
+    },
+    {
+      "type": "scatter",
+      "column1": "clicks",
+      "column2": "conversions",
+      "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_marketing_data\\correlation\\correlation_scatter_clicks_conversions.png",
+      "analysis_type": "correlation"
+    },
+    {
+      "type": "scatter",
+      "column1": "clicks",
+      "column2": "revenue",
+      "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_marketing_data\\correlation\\correlation_scatter_clicks_revenue.png",
+      "analysis_type": "correlation"
+    },
+    {
+      "type": "scatter",
+      "column1": "conversions",
+      "column2": "revenue",
+      "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_marketing_data\\correlation\\correlation_scatter_conversions_revenue.png",
+      "analysis_type": "correlation"
+    }
+  ],
+  "recommended_visualizations": [
+    {
+      "type": "scatter",
+      "columns": [
+        "budget",
+        "spend"
+      ],
+      "title": "budget vs spend (r=0.98)",
+      "reason": "매우 강한 양의 상관 관계가 있습니다."
+    },
+    {
+      "type": "scatter",
+      "columns": [
+        "impressions",
+        "clicks"
+      ],
+      "title": "impressions vs clicks (r=0.81)",
+      "reason": "강한 양의 상관 관계가 있습니다."
+    },
+    {
+      "type": "scatter",
+      "columns": [
+        "clicks",
+        "conversions"
+      ],
+      "title": "clicks vs conversions (r=0.85)",
+      "reason": "강한 양의 상관 관계가 있습니다."
+    },
+    {
+      "type": "boxplot",
+      "columns": [
+        "type",
+        "campaign_id"
+      ],
+      "title": "type별 campaign_id 분포",
+      "reason": "범주별 campaign_id 분포 차이를 보여줍니다."
+    },
+    {
+      "type": "boxplot",
+      "columns": [
+        "type",
+        "budget"
+      ],
+      "title": "type별 budget 분포",
+      "reason": "범주별 budget 분포 차이를 보여줍니다."
+    },
+    {
+      "type": "boxplot",
+      "columns": [
+        "channel",
+        "campaign_id"
+      ],
+      "title": "channel별 campaign_id 분포",
+      "reason": "범주별 campaign_id 분포 차이를 보여줍니다."
+    },
+    {
+      "type": "boxplot",
+      "columns": [
+        "channel",
+        "budget"
+      ],
+      "title": "channel별 budget 분포",
+      "reason": "범주별 budget 분포 차이를 보여줍니다."
+    }
+  ]
+}
