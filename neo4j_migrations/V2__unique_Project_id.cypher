@@ -1,0 +1,1 @@
+CREATE CONSTRAINT project_id IF NOT EXISTS ON (p:Project) ASSERT p.id IS UNIQUE;

@@ -1,0 +1,1 @@
+DROP CONSTRAINT project_id IF EXISTS;
