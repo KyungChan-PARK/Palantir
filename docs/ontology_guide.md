@@ -1,5 +1,7 @@
 # Ontology Guide — Education Domain (v1.0)
 
+[Ontology Quick Start](quick_start_ontology.md)
+
 ## 1. Core Object Types (`:MetaObject`)
 | Label | Description | Key Properties |
 |-------|-------------|----------------|

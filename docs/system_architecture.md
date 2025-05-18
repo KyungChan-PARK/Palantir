@@ -1,7 +1,11 @@
 # 시스템 아키텍처
+
+[Architecture Quick Start](quick_start_architecture.md)
 > ⚠️ 본 문서에서 언급된 Cursor AI 및 Codex CLI 관련 내용은 Cursor AI 및 Codex CLI가 담당하는 것으로 변경되었습니다.
 
 ## 1. 아키텍처 개요
+
+![Architecture Diagram](diagram.png)
 
 팔란티어 파운드리 프로젝트는 모듈화된 구성요소로 이루어진 확장 가능한 시스템입니다. 시스템은 '원자-분자-유기체' 패턴을 따라 구성되어 있으며, 각 구성요소는 명확한 경계와 책임을 가지고 독립적으로 운영되면서도 필요에 따라 통합될 수 있습니다.
 
