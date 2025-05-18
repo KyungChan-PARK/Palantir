@@ -1,0 +1,409 @@
+{% extends "base.html" %}
+
+{% block title %}Palantir Dashboard - Documents{% endblock %}
+
+{% block extra_css %}
+<style>
+    .document-card {
+        height: 100%;
+        transition: transform 0.2s;
+    }
+    
+    .document-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .tag-badge {
+        margin-right: 5px;
+        margin-bottom: 5px;
+    }
+    
+    .document-metadata {
+        font-size: 0.85rem;
+        color: #6c757d;
+    }
+    
+    .search-form {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+    
+    .folder-structure {
+        border-right: 1px solid #dee2e6;
+        height: 100%;
+    }
+    
+    .folder-item {
+        cursor: pointer;
+        padding: 5px 10px;
+        border-radius: 3px;
+    }
+    
+    .folder-item:hover {
+        background-color: #f0f0f0;
+    }
+    
+    .folder-item.active {
+        background-color: #e9ecef;
+        font-weight: bold;
+    }
+    
+    .document-preview {
+        max-height: 500px;
+        overflow-y: auto;
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        font-family: monospace;
+        white-space: pre-wrap;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Document Management</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group me-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#uploadDocumentModal">
+                <i class="bi bi-upload"></i> Upload
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#createDocumentModal">
+                <i class="bi bi-file-earmark-plus"></i> Create
+            </button>
+        </div>
+        <button type="button" class="btn btn-sm btn-outline-primary" id="refresh-documents">
+            <i class="bi bi-arrow-clockwise"></i> Refresh
+        </button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="folder-structure">
+            <h5>Folders</h5>
+            <div class="list-group">
+                {% for folder in folders %}
+                <div class="folder-item {% if current_folder == folder.path %}active{% endif %}" data-folder="{{ folder.path }}">
+                    <i class="bi bi-folder{% if current_folder == folder.path %}-fill{% endif %} me-2"></i> {{ folder.name }}
+                    <span class="badge bg-secondary float-end">{{ folder.count }}</span>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <h5 class="mt-4">Tags</h5>
+            <div>
+                {% for tag in tags %}
+                <a href="?tag={{ tag.name }}" class="tag-badge badge {% if current_tag == tag.name %}bg-primary{% else %}bg-secondary{% endif %}">
+                    {{ tag.name }} <span class="badge bg-light text-dark">{{ tag.count }}</span>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-9">
+        <div class="search-form">
+            <form method="get" action="{{ url_for('documents') }}">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search documents..." name="query" value="{{ search_query }}">
+                            <button class="btn btn-outline-secondary" type="submit">Search</button>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" name="type">
+                            <option value="">All Types</option>
+                            {% for doc_type in document_types %}
+                            <option value="{{ doc_type }}" {% if current_type == doc_type %}selected{% endif %}>{{ doc_type|title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" name="sort">
+                            <option value="date_desc" {% if sort_order == 'date_desc' %}selected{% endif %}>Newest First</option>
+                            <option value="date_asc" {% if sort_order == 'date_asc' %}selected{% endif %}>Oldest First</option>
+                            <option value="name_asc" {% if sort_order == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
+                            <option value="name_desc" {% if sort_order == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        {% if documents %}
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for document in documents %}
+            <div class="col">
+                <div class="card document-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h5 class="card-title text-truncate">{{ document.name }}</h5>
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-light" type="button" id="dropdownMenuButton{{ loop.index }}" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton{{ loop.index }}">
+                                    <li><a class="dropdown-item" href="{{ url_for('view_document', doc_id=document.id) }}"><i class="bi bi-eye me-2"></i> View</a></li>
+                                    <li><a class="dropdown-item" href="{{ url_for('edit_document', doc_id=document.id) }}"><i class="bi bi-pencil me-2"></i> Edit</a></li>
+                                    <li><a class="dropdown-item" href="{{ url_for('download_document', doc_id=document.id) }}"><i class="bi bi-download me-2"></i> Download</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteDocumentModal" data-document-id="{{ document.id }}" data-document-name="{{ document.name }}"><i class="bi bi-trash me-2"></i> Delete</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p class="card-text document-metadata">
+                            <span class="me-2"><i class="bi bi-file-earmark"></i> {{ document.type|title }}</span>
+                            <span><i class="bi bi-calendar"></i> {{ document.date }}</span>
+                        </p>
+                        <p class="card-text text-truncate">{{ document.description or 'No description available.' }}</p>
+                        <div>
+                            {% for tag in document.tags %}
+                            <span class="tag-badge badge bg-info">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="{{ url_for('analyze_document', doc_id=document.id) }}" class="btn btn-sm btn-outline-primary">Analyze</a>
+                        <a href="{{ url_for('add_to_context', doc_id=document.id) }}" class="btn btn-sm btn-outline-success">Add to Context</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- Pagination -->
+        <nav aria-label="Documents pagination" class="mt-4">
+            <ul class="pagination justify-content-center">
+                <li class="page-item {% if current_page == 1 %}disabled{% endif %}">
+                    <a class="page-link" href="{{ url_for('documents', page=current_page-1, query=search_query, type=current_type, sort=sort_order, tag=current_tag) }}" tabindex="-1" {% if current_page == 1 %}aria-disabled="true"{% endif %}>Previous</a>
+                </li>
+                {% for page_num in range(1, total_pages + 1) %}
+                <li class="page-item {% if page_num == current_page %}active{% endif %}">
+                    <a class="page-link" href="{{ url_for('documents', page=page_num, query=search_query, type=current_type, sort=sort_order, tag=current_tag) }}">{{ page_num }}</a>
+                </li>
+                {% endfor %}
+                <li class="page-item {% if current_page == total_pages %}disabled{% endif %}">
+                    <a class="page-link" href="{{ url_for('documents', page=current_page+1, query=search_query, type=current_type, sort=sort_order, tag=current_tag) }}">Next</a>
+                </li>
+            </ul>
+        </nav>
+        {% else %}
+        <div class="alert alert-info">
+            <i class="bi bi-info-circle me-2"></i> No documents found matching your criteria.
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Upload Document Modal -->
+<div class="modal fade" id="uploadDocumentModal" tabindex="-1" aria-labelledby="uploadDocumentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="uploadDocumentModalLabel">Upload Document</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="uploadDocumentForm" action="{{ url_for('upload_document') }}" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="documentFile" class="form-label">File</label>
+                        <input type="file" class="form-control" id="documentFile" name="file" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="documentName" class="form-label">Name (optional)</label>
+                        <input type="text" class="form-control" id="documentName" name="name" placeholder="Will use filename if empty">
+                    </div>
+                    <div class="mb-3">
+                        <label for="documentType" class="form-label">Type</label>
+                        <select class="form-select" id="documentType" name="type">
+                            {% for doc_type in document_types %}
+                            <option value="{{ doc_type }}">{{ doc_type|title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="documentTags" class="form-label">Tags (comma separated)</label>
+                        <input type="text" class="form-control" id="documentTags" name="tags" placeholder="tag1, tag2, tag3">
+                    </div>
+                    <div class="mb-3">
+                        <label for="documentDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="documentDescription" name="description" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="documentFolder" class="form-label">Folder</label>
+                        <select class="form-select" id="documentFolder" name="folder">
+                            {% for folder in folders %}
+                            <option value="{{ folder.path }}" {% if current_folder == folder.path %}selected{% endif %}>{{ folder.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" form="uploadDocumentForm" class="btn btn-primary">Upload</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create Document Modal -->
+<div class="modal fade" id="createDocumentModal" tabindex="-1" aria-labelledby="createDocumentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createDocumentModalLabel">Create Document</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="createDocumentForm" action="{{ url_for('create_document') }}" method="post">
+                    <div class="mb-3">
+                        <label for="newDocumentName" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="newDocumentName" name="name" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="newDocumentType" class="form-label">Type</label>
+                                <select class="form-select" id="newDocumentType" name="type">
+                                    {% for doc_type in document_types %}
+                                    <option value="{{ doc_type }}">{{ doc_type|title }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="newDocumentFolder" class="form-label">Folder</label>
+                                <select class="form-select" id="newDocumentFolder" name="folder">
+                                    {% for folder in folders %}
+                                    <option value="{{ folder.path }}" {% if current_folder == folder.path %}selected{% endif %}>{{ folder.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="newDocumentTags" class="form-label">Tags (comma separated)</label>
+                        <input type="text" class="form-control" id="newDocumentTags" name="tags" placeholder="tag1, tag2, tag3">
+                    </div>
+                    <div class="mb-3">
+                        <label for="newDocumentContent" class="form-label">Content</label>
+                        <textarea class="form-control" id="newDocumentContent" name="content" rows="10" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="newDocumentDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="newDocumentDescription" name="description" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" form="createDocumentForm" class="btn btn-primary">Create</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Document Modal -->
+<div class="modal fade" id="deleteDocumentModal" tabindex="-1" aria-labelledby="deleteDocumentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteDocumentModalLabel">Confirm Delete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete "<span id="deleteDocumentName"></span>"?</p>
+                <p class="text-danger">This action cannot be undone.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form id="deleteDocumentForm" action="{{ url_for('delete_document') }}" method="post">
+                    <input type="hidden" id="deleteDocumentId" name="doc_id">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- View Document Modal -->
+<div class="modal fade" id="viewDocumentModal" tabindex="-1" aria-labelledby="viewDocumentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewDocumentModalLabel">Document Preview</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="document-preview" id="documentPreview">
+                    Loading...
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a href="#" id="editDocumentLink" class="btn btn-primary">Edit</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Folder navigation
+    document.querySelectorAll('.folder-item').forEach(function(folder) {
+        folder.addEventListener('click', function() {
+            window.location.href = "{{ url_for('documents') }}?folder=" + encodeURIComponent(this.dataset.folder);
+        });
+    });
+    
+    // Delete document modal
+    var deleteDocumentModal = document.getElementById('deleteDocumentModal');
+    if (deleteDocumentModal) {
+        deleteDocumentModal.addEventListener('show.bs.modal', function(event) {
+            var button = event.relatedTarget;
+            var documentId = button.getAttribute('data-document-id');
+            var documentName = button.getAttribute('data-document-name');
+            
+            document.getElementById('deleteDocumentId').value = documentId;
+            document.getElementById('deleteDocumentName').textContent = documentName;
+        });
+    }
+    
+    // View document modal
+    var viewDocumentModal = document.getElementById('viewDocumentModal');
+    if (viewDocumentModal) {
+        viewDocumentModal.addEventListener('show.bs.modal', function(event) {
+            var button = event.relatedTarget;
+            var documentId = button.getAttribute('data-document-id');
+            var documentName = button.getAttribute('data-document-name');
+            
+            document.getElementById('viewDocumentModalLabel').textContent = documentName;
+            document.getElementById('documentPreview').textContent = 'Loading...';
+            document.getElementById('editDocumentLink').href = "{{ url_for('edit_document', doc_id='') }}" + documentId;
+            
+            // Load document content via AJAX
+            fetch("{{ url_for('get_document_content') }}?doc_id=" + documentId)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('documentPreview').textContent = data;
+                })
+                .catch(error => {
+                    document.getElementById('documentPreview').textContent = 'Error loading document: ' + error;
+                });
+        });
+    }
+    
+    // Refresh documents
+    document.getElementById('refresh-documents').addEventListener('click', function() {
+        location.reload();
+    });
+</script>
+{% endblock %}

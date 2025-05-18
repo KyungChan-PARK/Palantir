@@ -1,0 +1,70 @@
+{
+  "name": "codex",
+  "displayName": "OpenAI Codex",
+  "description": "OpenAI Codex CLI 통합",
+  "version": "1.0.0",
+  "protocolVersion": "2024-11-05",
+  "transport": "stdio",
+  "command": {
+    "name": "npx",
+    "args": [
+      "-y",
+      "@openai/codex"
+    ],
+    "env": {
+      "OPENAI_API_KEY": "${OPENAI_API_KEY}"
+    }
+  },
+  "functions": [
+    {
+      "name": "generate_code",
+      "description": "Generates code based on natural language description",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "Natural language description of the code to generate"
+          },
+          "language": {
+            "type": "string",
+            "description": "Programming language for the code"
+          }
+        },
+        "required": ["description"]
+      }
+    },
+    {
+      "name": "explain_code",
+      "description": "Explains existing code",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Code to explain"
+          }
+        },
+        "required": ["code"]
+      }
+    },
+    {
+      "name": "refactor_code",
+      "description": "Refactors existing code",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Code to refactor"
+          },
+          "instructions": {
+            "type": "string",
+            "description": "Instructions for refactoring"
+          }
+        },
+        "required": ["code", "instructions"]
+      }
+    }
+  ]
+}

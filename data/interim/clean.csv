@@ -1,0 +1,236 @@
+path,size,ext
+.clinerules,59120,
+.cursorrules,59120,
+.dockerignore,361,
+.env.sample,181,.sample
+.gitignore,1141,
+.windsurfrules,59120,
+Dockerfile,294,
+flow.py,1107,.py
+LICENSE,1091,
+main.py,4579,.py
+nodes.py,42403,.py
+README.md,9554,.md
+requirements.txt,162,.txt
+.git\config,364,
+.git\description,73,
+.git\HEAD,21,
+.git\index,22141,
+.git\packed-refs,191,
+assets\banner.png,5024749,.png
+assets\example.png,678115,.png
+assets\youtube_thumbnail.png,1118614,.png
+docs\design.md,16231,.md
+docs\index.md,3166,.md
+docs\_config.yml,994,.yml
+utils\call_llm.py,7597,.py
+utils\crawl_github_files.py,17249,.py
+utils\crawl_local_files.py,5489,.py
+utils\__init__.py,0,.py
+docs\AutoGen Core\01_agent.md,12917,.md
+docs\AutoGen Core\02_messaging_system__topic___subscription_.md,14529,.md
+docs\AutoGen Core\03_agentruntime.md,19379,.md
+docs\AutoGen Core\04_tool.md,15866,.md
+docs\AutoGen Core\05_chatcompletionclient.md,16139,.md
+docs\AutoGen Core\06_chatcompletioncontext.md,16102,.md
+docs\AutoGen Core\07_memory.md,15896,.md
+docs\AutoGen Core\08_component.md,18034,.md
+docs\AutoGen Core\index.md,1715,.md
+docs\Browser Use\01_agent.md,14089,.md
+docs\Browser Use\02_system_prompt.md,12716,.md
+docs\Browser Use\03_browsercontext.md,15957,.md
+docs\Browser Use\04_dom_representation.md,17961,.md
+docs\Browser Use\05_action_controller___registry.md,19305,.md
+docs\Browser Use\06_message_manager.md,20873,.md
+docs\Browser Use\07_data_structures__views_.md,13784,.md
+docs\Browser Use\08_telemetry_service.md,14570,.md
+docs\Browser Use\index.md,1920,.md
+docs\Celery\01_celery_app.md,14195,.md
+docs\Celery\02_configuration.md,12951,.md
+docs\Celery\03_task.md,14643,.md
+docs\Celery\04_broker_connection__amqp_.md,11068,.md
+docs\Celery\05_worker.md,14892,.md
+docs\Celery\06_result_backend.md,17536,.md
+docs\Celery\07_beat__scheduler_.md,16741,.md
+docs\Celery\08_canvas__signatures___primitives_.md,18464,.md
+docs\Celery\09_events.md,16380,.md
+docs\Celery\10_bootsteps.md,13922,.md
+docs\Celery\index.md,1803,.md
+docs\Click\01_command___group.md,9411,.md
+docs\Click\02_decorators.md,12926,.md
+docs\Click\03_parameter__option___argument_.md,13728,.md
+docs\Click\04_paramtype.md,12554,.md
+docs\Click\05_context.md,14413,.md
+docs\Click\06_term_ui__terminal_user_interface_.md,12843,.md
+docs\Click\07_click_exceptions.md,14149,.md
+docs\Click\index.md,1474,.md
+docs\Codex\01_terminal_ui__ink_components_.md,15896,.md
+docs\Codex\02_input_handling__textbuffer_editor_.md,18764,.md
+docs\Codex\03_agent_loop.md,18495,.md
+docs\Codex\04_approval_policy___security.md,14149,.md
+docs\Codex\05_response___tool_call_handling.md,17650,.md
+docs\Codex\06_command_execution___sandboxing.md,18536,.md
+docs\Codex\07_configuration_management.md,14675,.md
+docs\Codex\08_single_pass_mode.md,17905,.md
+docs\Codex\index.md,1567,.md
+docs\Crawl4AI\01_asynccrawlerstrategy.md,12341,.md
+docs\Crawl4AI\02_asyncwebcrawler.md,18310,.md
+docs\Crawl4AI\03_crawlerrunconfig.md,14146,.md
+docs\Crawl4AI\04_contentscrapingstrategy.md,16517,.md
+docs\Crawl4AI\05_relevantcontentfilter.md,22241,.md
+docs\Crawl4AI\06_extractionstrategy.md,24147,.md
+docs\Crawl4AI\07_crawlresult.md,17342,.md
+docs\Crawl4AI\08_deepcrawlstrategy.md,21118,.md
+docs\Crawl4AI\09_cachecontext___cachemode.md,17664,.md
+docs\Crawl4AI\10_basedispatcher.md,19906,.md
+docs\Crawl4AI\index.md,1902,.md
+docs\CrewAI\01_crew.md,11149,.md
+docs\CrewAI\02_agent.md,11428,.md
+docs\CrewAI\03_task.md,15445,.md
+docs\CrewAI\04_tool.md,16862,.md
+docs\CrewAI\05_process.md,16323,.md
+docs\CrewAI\06_llm.md,18509,.md
+docs\CrewAI\07_memory.md,14011,.md
+docs\CrewAI\08_knowledge.md,17020,.md
+docs\CrewAI\index.md,1362,.md
+docs\DSPy\01_module___program.md,13329,.md
+docs\DSPy\02_signature.md,10538,.md
+docs\DSPy\03_example.md,11781,.md
+docs\DSPy\04_predict.md,13050,.md
+docs\DSPy\05_lm__language_model_client_.md,16904,.md
+docs\DSPy\06_rm__retrieval_model_client_.md,19230,.md
+docs\DSPy\07_evaluate.md,17523,.md
+docs\DSPy\08_teleprompter___optimizer.md,17479,.md
+docs\DSPy\09_adapter.md,17701,.md
+docs\DSPy\10_settings.md,17313,.md
+docs\DSPy\index.md,1771,.md
+docs\FastAPI\01_fastapi_application___routing.md,12888,.md
+docs\FastAPI\02_path_operations___parameter_declaration.md,21320,.md
+docs\FastAPI\03_data_validation___serialization__pydantic_.md,20622,.md
+docs\FastAPI\04_openapi___automatic_docs.md,16932,.md
+docs\FastAPI\05_dependency_injection.md,20155,.md
+docs\FastAPI\06_error_handling.md,16958,.md
+docs\FastAPI\07_security_utilities.md,22974,.md
+docs\FastAPI\08_background_tasks.md,11686,.md
+docs\FastAPI\index.md,1600,.md
+docs\Flask\01_application_object___flask__.md,9126,.md
+docs\Flask\02_routing_system.md,11291,.md
+docs\Flask\03_request_and_response_objects.md,15240,.md
+docs\Flask\04_templating__jinja2_integration_.md,16078,.md
+docs\Flask\05_context_globals___current_app____request____session____g__.md,19798,.md
+docs\Flask\06_configuration___config__.md,18707,.md
+docs\Flask\07_application_and_request_contexts.md,15279,.md
+docs\Flask\08_blueprints.md,16676,.md
+docs\Flask\index.md,1388,.md
+docs\Google A2A\01_agent_card.md,8316,.md
+docs\Google A2A\02_task.md,11819,.md
+docs\Google A2A\03_a2a_protocol___core_types.md,10979,.md
+docs\Google A2A\04_a2a_server_implementation.md,14261,.md
+docs\Google A2A\05_a2a_client_implementation.md,14505,.md
+docs\Google A2A\06_task_handling_logic__server_side_.md,17105,.md
+docs\Google A2A\07_streaming_communication__sse_.md,19561,.md
+docs\Google A2A\08_multi_agent_orchestration__host_agent_.md,14819,.md
+docs\Google A2A\09_demo_ui_application___service.md,15767,.md
+docs\Google A2A\index.md,1640,.md
+docs\LangGraph\01_graph___stategraph.md,14970,.md
+docs\LangGraph\02_nodes___pregelnode__.md,12726,.md
+docs\LangGraph\03_channels.md,21323,.md
+docs\LangGraph\04_control_flow_primitives___branch____send____interrupt__.md,28102,.md
+docs\LangGraph\05_pregel_execution_engine.md,17425,.md
+docs\LangGraph\06_checkpointer___basecheckpointsaver__.md,20945,.md
+docs\LangGraph\index.md,1410,.md
+docs\LevelDB\01_table___sstable___tablecache.md,14573,.md
+docs\LevelDB\02_memtable.md,14144,.md
+docs\LevelDB\03_write_ahead_log__wal____logwriter_logreader.md,18309,.md
+docs\LevelDB\04_dbimpl.md,23834,.md
+docs\LevelDB\05_writebatch.md,13095,.md
+docs\LevelDB\06_version___versionset.md,16276,.md
+docs\LevelDB\07_iterator.md,19261,.md
+docs\LevelDB\08_compaction.md,17894,.md
+docs\LevelDB\09_internalkey___dbformat.md,16473,.md
+docs\LevelDB\index.md,1865,.md
+docs\MCP Python SDK\01_cli___mcp__command_.md,12316,.md
+docs\MCP Python SDK\02_fastmcp_server___fastmcp__.md,15324,.md
+docs\MCP Python SDK\03_fastmcp_resources___resource____resourcemanager__.md,16224,.md
+docs\MCP Python SDK\04_fastmcp_tools___tool____toolmanager__.md,14246,.md
+docs\MCP Python SDK\05_fastmcp_prompts___prompt____promptmanager__.md,17675,.md
+docs\MCP Python SDK\06_fastmcp_context___context__.md,17841,.md
+docs\MCP Python SDK\07_mcp_protocol_types.md,15219,.md
+docs\MCP Python SDK\08_client_server_sessions___clientsession____serversession__.md,19459,.md
+docs\MCP Python SDK\09_communication_transports__stdio__sse__websocket__memory_.md,19444,.md
+docs\MCP Python SDK\index.md,1891,.md
+docs\NumPy Core\01_ndarray__n_dimensional_array_.md,9748,.md
+docs\NumPy Core\02_dtype__data_type_object_.md,12909,.md
+docs\NumPy Core\03_ufunc__universal_function_.md,12387,.md
+docs\NumPy Core\04_numeric_types___numerictypes__.md,13281,.md
+docs\NumPy Core\05_array_printing___arrayprint__.md,15376,.md
+docs\NumPy Core\06_multiarray_module.md,11080,.md
+docs\NumPy Core\07_umath_module.md,11170,.md
+docs\NumPy Core\08___array_function___protocol___overrides___overrides__.md,13775,.md
+docs\NumPy Core\index.md,1756,.md
+docs\OpenManus\01_llm.md,12128,.md
+docs\OpenManus\02_message___memory.md,14117,.md
+docs\OpenManus\03_baseagent.md,14341,.md
+docs\OpenManus\04_tool___toolcollection.md,16110,.md
+docs\OpenManus\05_baseflow.md,19613,.md
+docs\OpenManus\06_schema.md,13302,.md
+docs\OpenManus\07_configuration__config_.md,17633,.md
+docs\OpenManus\08_dockersandbox.md,19089,.md
+docs\OpenManus\09_mcp__model_context_protocol_.md,22082,.md
+docs\OpenManus\index.md,1898,.md
+docs\PocketFlow\01_shared_state___shared__dictionary__.md,15022,.md
+docs\PocketFlow\02_node___basenode____node____asyncnode___.md,15038,.md
+docs\PocketFlow\03_actions___transitions_.md,17623,.md
+docs\PocketFlow\04_flow___flow____asyncflow___.md,17516,.md
+docs\PocketFlow\05_asynchronous_processing___asyncnode____asyncflow___.md,14021,.md
+docs\PocketFlow\06_batch_processing___batchnode____batchflow____asyncparallelbatchnode___.md,18787,.md
+docs\PocketFlow\07_a2a__agent_to_agent__communication_framework_.md,21263,.md
+docs\PocketFlow\index.md,2292,.md
+docs\Pydantic Core\01_basemodel.md,11370,.md
+docs\Pydantic Core\02_fields__fieldinfo___field_function_.md,16161,.md
+docs\Pydantic Core\03_configuration__configdict___configwrapper_.md,19231,.md
+docs\Pydantic Core\04_custom_logic__decorators___annotated_helpers_.md,25870,.md
+docs\Pydantic Core\05_core_schema___validation_serialization.md,14699,.md
+docs\Pydantic Core\06_typeadapter.md,17434,.md
+docs\Pydantic Core\index.md,1581,.md
+docs\Requests\01_functional_api.md,10214,.md
+docs\Requests\02_request___response_models.md,13579,.md
+docs\Requests\03_session.md,18239,.md
+docs\Requests\04_cookie_jar.md,16576,.md
+docs\Requests\05_authentication_handlers.md,20040,.md
+docs\Requests\06_exception_hierarchy.md,19469,.md
+docs\Requests\07_transport_adapters.md,22387,.md
+docs\Requests\08_hook_system.md,18557,.md
+docs\Requests\index.md,1475,.md
+docs\SmolaAgents\01_multistepagent.md,16312,.md
+docs\SmolaAgents\02_model_interface.md,15840,.md
+docs\SmolaAgents\03_tool.md,15410,.md
+docs\SmolaAgents\04_agentmemory.md,18695,.md
+docs\SmolaAgents\05_prompttemplates.md,15045,.md
+docs\SmolaAgents\06_pythonexecutor.md,21152,.md
+docs\SmolaAgents\07_agenttype.md,19390,.md
+docs\SmolaAgents\08_agentlogger___monitor.md,20305,.md
+docs\SmolaAgents\index.md,1873,.md
+.git\hooks\applypatch-msg.sample,478,.sample
+.git\hooks\commit-msg.sample,896,.sample
+.git\hooks\fsmonitor-watchman.sample,4726,.sample
+.git\hooks\post-update.sample,189,.sample
+.git\hooks\pre-applypatch.sample,424,.sample
+.git\hooks\pre-commit.sample,1649,.sample
+.git\hooks\pre-merge-commit.sample,416,.sample
+.git\hooks\pre-push.sample,1374,.sample
+.git\hooks\pre-rebase.sample,4898,.sample
+.git\hooks\pre-receive.sample,544,.sample
+.git\hooks\prepare-commit-msg.sample,1492,.sample
+.git\hooks\push-to-checkout.sample,2783,.sample
+.git\hooks\sendemail-validate.sample,2308,.sample
+.git\hooks\update.sample,3650,.sample
+.git\info\exclude,240,
+.git\logs\HEAD,221,
+.git\refs\heads\main,41,
+.git\refs\remotes\origin\HEAD,30,
+.git\objects\pack\pack-8eaa5f1688fdab9bfda94c6cc30beec44a7790d2.idx,29996,.idx
+.git\objects\pack\pack-8eaa5f1688fdab9bfda94c6cc30beec44a7790d2.pack,12174355,.pack
+.git\objects\pack\pack-8eaa5f1688fdab9bfda94c6cc30beec44a7790d2.rev,4184,.rev
+.git\logs\refs\heads\main,221,
+.git\logs\refs\remotes\origin\HEAD,221,

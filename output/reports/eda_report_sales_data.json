@@ -1,0 +1,312 @@
+{
+  "file_name": "sales_data.csv",
+  "file_path": "data/sales_data.csv",
+  "data_info": {
+    "shape": [
+      1000,
+      7
+    ],
+    "columns": [
+      "date",
+      "product",
+      "region",
+      "channel",
+      "quantity",
+      "price",
+      "revenue"
+    ],
+    "dtypes": {
+      "date": "object",
+      "product": "object",
+      "region": "object",
+      "channel": "object",
+      "quantity": "int64",
+      "price": "float64",
+      "revenue": "float64"
+    }
+  },
+  "preprocessing": {
+    "remove_nulls": {
+      "success": true,
+      "operation_results": {
+        "old_shape": [
+          1000,
+          7
+        ],
+        "new_shape": [
+          1000,
+          7
+        ],
+        "removed_rows": 0
+      }
+    }
+  },
+  "analysis": {
+    "descriptive": {
+      "success": true,
+      "analysis_type": "descriptive",
+      "numeric_statistics": {
+        "count": {
+          "quantity": 1000.0,
+          "price": 1000.0,
+          "revenue": 1000.0
+        },
+        "mean": {
+          "quantity": 5.433,
+          "price": 1036814.9767467038,
+          "revenue": 6272228.879422841
+        },
+        "std": {
+          "quantity": 2.8725881644890836,
+          "price": 546663.6825394199,
+          "revenue": 5096160.05669962
+        },
+        "min": {
+          "quantity": 1.0,
+          "price": 101009.85329399852,
+          "revenue": 132317.92294797007
+        },
+        "25%": {
+          "quantity": 3.0,
+          "price": 546079.5567962796,
+          "revenue": 2111040.859547303
+        },
+        "50%": {
+          "quantity": 5.0,
+          "price": 1061594.632401993,
+          "revenue": 4720825.764302974
+        },
+        "75%": {
+          "quantity": 8.0,
+          "price": 1483940.0399581294,
+          "revenue": 9473435.188279293
+        },
+        "max": {
+          "quantity": 10.0,
+          "price": 1998472.3501614989,
+          "revenue": 26018469.97870292
+        }
+      },
+      "categorical_statistics": {
+        "product": {
+          "unique_values": 5,
+          "top_values": {
+            "노트북": 210,
+            "스마트워치": 202,
+            "이어폰": 202,
+            "스마트폰": 198,
+            "태블릿": 188
+          },
+          "top_percentages": {
+            "노트북": 21.0,
+            "스마트워치": 20.200000000000003,
+            "이어폰": 20.200000000000003,
+            "스마트폰": 19.8,
+            "태블릿": 18.8
+          }
+        },
+        "region": {
+          "unique_values": 8,
+          "top_values": {
+            "대전": 137,
+            "광주": 132,
+            "서울": 128,
+            "인천": 127,
+            "대구": 126
+          },
+          "top_percentages": {
+            "대전": 13.700000000000001,
+            "광주": 13.200000000000001,
+            "서울": 12.8,
+            "인천": 12.7,
+            "대구": 12.6
+          }
+        },
+        "channel": {
+          "unique_values": 3,
+          "top_values": {
+            "온라인": 347,
+            "오프라인": 337,
+            "모바일앱": 316
+          },
+          "top_percentages": {
+            "온라인": 34.699999999999996,
+            "오프라인": 33.7,
+            "모바일앱": 31.6
+          }
+        }
+      },
+      "null_information": {
+        "counts": {
+          "date": 0,
+          "product": 0,
+          "region": 0,
+          "channel": 0,
+          "quantity": 0,
+          "price": 0,
+          "revenue": 0
+        },
+        "percentages": {
+          "date": 0.0,
+          "product": 0.0,
+          "region": 0.0,
+          "channel": 0.0,
+          "quantity": 0.0,
+          "price": 0.0,
+          "revenue": 0.0
+        }
+      },
+      "insights": [],
+      "visualizations": [
+        {
+          "type": "distribution",
+          "column": "quantity",
+          "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_sales_data\\descriptive\\descriptive_quantity_distribution.png",
+          "analysis_type": "descriptive"
+        },
+        {
+          "type": "distribution",
+          "column": "price",
+          "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_sales_data\\descriptive\\descriptive_price_distribution.png",
+          "analysis_type": "descriptive"
+        },
+        {
+          "type": "distribution",
+          "column": "revenue",
+          "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_sales_data\\descriptive\\descriptive_revenue_distribution.png",
+          "analysis_type": "descriptive"
+        },
+        {
+          "type": "frequency",
+          "column": "product",
+          "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_sales_data\\descriptive\\descriptive_product_frequency.png",
+          "analysis_type": "descriptive"
+        },
+        {
+          "type": "frequency",
+          "column": "region",
+          "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_sales_data\\descriptive\\descriptive_region_frequency.png",
+          "analysis_type": "descriptive"
+        },
+        {
+          "type": "frequency",
+          "column": "channel",
+          "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_sales_data\\descriptive\\descriptive_channel_frequency.png",
+          "analysis_type": "descriptive"
+        }
+      ]
+    },
+    "correlation": {
+      "success": true,
+      "analysis_type": "correlation",
+      "correlation_matrix": {
+        "quantity": {
+          "quantity": 1.0,
+          "price": 0.004,
+          "revenue": 0.657
+        },
+        "price": {
+          "quantity": 0.004,
+          "price": 1.0,
+          "revenue": 0.645
+        },
+        "revenue": {
+          "quantity": 0.657,
+          "price": 0.645,
+          "revenue": 1.0
+        }
+      },
+      "strong_correlations": [],
+      "insights": [],
+      "visualizations": [
+        {
+          "type": "heatmap",
+          "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_sales_data\\correlation\\correlation_heatmap.png",
+          "analysis_type": "correlation"
+        }
+      ]
+    }
+  },
+  "insights": [],
+  "visualizations": [
+    {
+      "type": "distribution",
+      "column": "quantity",
+      "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_sales_data\\descriptive\\descriptive_quantity_distribution.png",
+      "analysis_type": "descriptive"
+    },
+    {
+      "type": "distribution",
+      "column": "price",
+      "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_sales_data\\descriptive\\descriptive_price_distribution.png",
+      "analysis_type": "descriptive"
+    },
+    {
+      "type": "distribution",
+      "column": "revenue",
+      "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_sales_data\\descriptive\\descriptive_revenue_distribution.png",
+      "analysis_type": "descriptive"
+    },
+    {
+      "type": "frequency",
+      "column": "product",
+      "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_sales_data\\descriptive\\descriptive_product_frequency.png",
+      "analysis_type": "descriptive"
+    },
+    {
+      "type": "frequency",
+      "column": "region",
+      "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_sales_data\\descriptive\\descriptive_region_frequency.png",
+      "analysis_type": "descriptive"
+    },
+    {
+      "type": "frequency",
+      "column": "channel",
+      "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_sales_data\\descriptive\\descriptive_channel_frequency.png",
+      "analysis_type": "descriptive"
+    },
+    {
+      "type": "heatmap",
+      "file_path": "C:\\Users\\packr\\OneDrive\\palantir\\output\\viz\\eda_report_sales_data\\correlation\\correlation_heatmap.png",
+      "analysis_type": "correlation"
+    }
+  ],
+  "recommended_visualizations": [
+    {
+      "type": "boxplot",
+      "columns": [
+        "product",
+        "quantity"
+      ],
+      "title": "product별 quantity 분포",
+      "reason": "범주별 quantity 분포 차이를 보여줍니다."
+    },
+    {
+      "type": "boxplot",
+      "columns": [
+        "product",
+        "price"
+      ],
+      "title": "product별 price 분포",
+      "reason": "범주별 price 분포 차이를 보여줍니다."
+    },
+    {
+      "type": "boxplot",
+      "columns": [
+        "region",
+        "quantity"
+      ],
+      "title": "region별 quantity 분포",
+      "reason": "범주별 quantity 분포 차이를 보여줍니다."
+    },
+    {
+      "type": "boxplot",
+      "columns": [
+        "region",
+        "price"
+      ],
+      "title": "region별 price 분포",
+      "reason": "범주별 price 분포 차이를 보여줍니다."
+    }
+  ]
+}

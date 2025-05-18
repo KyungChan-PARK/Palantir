@@ -1,0 +1,75 @@
+{
+  "neo4j": {
+    "uri": "bolt://localhost:7687",
+    "username": "neo4j",
+    "password": "password"
+  },
+  "airflow": {
+    "dags_folder": "analysis/airflow/dags",
+    "logs_folder": "logs/airflow",
+    "scheduler_interval": "0 * * * *"
+  },
+  "documents": {
+    "source_dir": "data/documents",
+    "processed_dir": "data/processed",
+    "supported_extensions": [".pdf", ".docx", ".xlsx", ".csv", ".txt", ".md", ".json"]
+  },
+  "data_sources": {
+    "sales_data_path": "data/samples/sales_data.csv",
+    "product_data_path": "data/samples/products.csv",
+    "customer_data_path": "data/samples/customers.csv"
+  },
+  "indexer": {
+    "index_dir": "data/index",
+    "max_preview_length": 1000
+  },
+  "onedrive": {
+    "root_path": "C:/Users/packr/OneDrive",
+    "cache_dir": "cache/onedrive",
+    "sync_interval": 3600
+  },
+  "notifications": {
+    "log_to_console": true,
+    "log_to_file": true,
+    "send_email": false,
+    "log_dir": "logs/notifications",
+    "history_dir": "logs/notifications",
+    "email_levels": ["error", "warning"],
+    "email": {
+      "smtp_server": "smtp.example.com",
+      "smtp_port": 587,
+      "username": "user@example.com",
+      "password": "password",
+      "from_addr": "alerts@example.com",
+      "to_addrs": ["admin@example.com"]
+    }
+  },
+  "logging": {
+    "level": "INFO",
+    "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    "file": "logs/app.log"
+  },
+  "dash": {
+    "host": "0.0.0.0",
+    "port": 8050,
+    "debug": true,
+    "assets_folder": "web/assets"
+  },
+  "api": {
+    "host": "0.0.0.0",
+    "port": 8000,
+    "debug": true,
+    "allowed_origins": ["*"]
+  },
+  "claude": {
+    "api_key": "YOUR_API_KEY_HERE",
+    "model": "claude-3-7-sonnet-20250219"
+  },
+  "paths": {
+    "temp_dir": "temp",
+    "cache_dir": "cache",
+    "logs_dir": "logs",
+    "reports_dir": "reports",
+    "backups_dir": "backups"
+  }
+}

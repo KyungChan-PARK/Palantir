@@ -1,0 +1,55 @@
+cursor_ai:
+  preferred_model: "claude-3-7"
+  auto_complete: true
+  context_length: "maximum"
+  suggestions: true
+
+codex:
+  model: "o4-mini"
+  approval_mode: "auto-edit"
+  default_directory: "C:\\Users\\packr\\OneDrive\\palantir"
+  models:
+    - name: "o4-mini"
+      description: "가장 빠르고 저렴한 모델"
+    - name: "o4-preview"
+      description: "높은 품질의 코드 생성 모델"
+    - name: "o4-pro"
+      description: "최고 품질의 코드 생성 모델"
+
+codex_claude:
+  model: "claude-3-7-sonnet-20250219"
+  approval_mode: "context-aware"
+  response_format: "markdown"
+  safety_filter: "strict"
+  temperature: 0.3
+  integration:
+    mcp_endpoint: "http://localhost:7681/mcp"
+    api_key: "${CLAUDE_API_KEY}"
+
+integration:
+  prompt_library: "C:\\Users\\packr\\OneDrive\\palantir\\ai_resources\\prompts"
+  snippet_library: "C:\\Users\\packr\\OneDrive\\palantir\\ai_resources\\snippets"
+
+mcp:
+  services:
+    - name: "openai_codex"
+      description: "OpenAI Codex CLI integration via MCP server"
+      base_url: "http://localhost:8000/"
+      protocol: "JSON-RPC 2.0"
+      authentication: null
+      methods:
+        - name: "write_code"
+          description: "코드 생성"
+          endpoint: "openai_codex_write_code"
+        - name: "explain_code"
+          description: "코드 설명"
+          endpoint: "openai_codex_explain_code"
+        - name: "debug_code"
+          description: "코드 디버깅"
+          endpoint: "openai_codex_debug_code"
+        - name: "refactor_code"
+          description: "코드 리팩토링"
+          endpoint: "openai_codex_refactor_code"
+        - name: "generate_tests"
+          description: "테스트 코드 생성"
+          endpoint: "openai_codex_generate_tests"

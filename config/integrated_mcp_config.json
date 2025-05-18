@@ -1,0 +1,60 @@
+{
+  "server": {
+    "mode": "integrated",
+    "host": "127.0.0.1",
+    "port": 8080,
+    "timeout": 120,
+    "max_connections": 50,
+    "enable_ssl": false
+  },
+  "systems": {
+    "data_analysis": {
+      "enabled": true,
+      "module_path": "analysis.tools.organisms",
+      "entry_point": "data_analysis_system",
+      "auto_start": true,
+      "dependencies": []
+    },
+    "youtube_api": {
+      "enabled": true,
+      "module_path": "analysis.tools.organisms",
+      "entry_point": "youtube_api_system",
+      "auto_start": true,
+      "dependencies": []
+    },
+    "document_test": {
+      "enabled": true,
+      "module_path": "analysis.tools.organisms",
+      "entry_point": "document_test_system",
+      "auto_start": false,
+      "dependencies": []
+    },
+    "context_optimization": {
+      "enabled": true,
+      "module_path": "analysis.tools.molecules",
+      "entry_point": "advanced_context",
+      "auto_start": false,
+      "dependencies": ["data_analysis", "document_test"]
+    },
+    "dashboard": {
+      "enabled": true,
+      "module_path": "analysis.tools.organisms",
+      "entry_point": "dashboard",
+      "auto_start": true,
+      "dependencies": ["data_analysis", "youtube_api", "document_test", "context_optimization"],
+      "port": 5000
+    }
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "logs/mcp_server.log",
+    "max_size": 10485760,
+    "backup_count": 5,
+    "console": true
+  },
+  "resources": {
+    "memory_limit": "4GB",
+    "cpu_limit": 0.75,
+    "temp_directory": "temp/mcp_temp"
+  }
+}

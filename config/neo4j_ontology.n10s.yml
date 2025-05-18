@@ -1,0 +1,5 @@
+# Neo4j n10s config
+handleVocabUris: "SHORTEN"
+handleMultival:  "ARRAY"
+keepLangTag:     false
+keepCustomDataTypes: false 

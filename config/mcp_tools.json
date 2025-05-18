@@ -1,0 +1,62 @@
+{
+  "version": "1.0",
+  "last_updated": "2025-05-18",
+  "mcp_tools": [
+    {
+      "id": "openai_codex",
+      "name": "OpenAI Codex",
+      "description": "OpenAI Codex CLI integration via MCP server",
+      "enabled": true,
+      "base_url": "http://localhost:8000/",
+      "protocol": "JSON-RPC 2.0",
+      "authentication": null,
+      "methods": [
+        {
+          "name": "write_code",
+          "description": "코드 생성",
+          "endpoint": "openai_codex_write_code"
+        },
+        {
+          "name": "explain_code",
+          "description": "코드 설명",
+          "endpoint": "openai_codex_explain_code"
+        },
+        {
+          "name": "debug_code",
+          "description": "코드 디버깅",
+          "endpoint": "openai_codex_debug_code"
+        },
+        {
+          "name": "refactor_code",
+          "description": "코드 리팩토링",
+          "endpoint": "openai_codex_refactor_code"
+        },
+        {
+          "name": "generate_tests",
+          "description": "테스트 코드 생성",
+          "endpoint": "openai_codex_generate_tests"
+        }
+      ],
+      "settings": {
+        "default_model": "o4-mini",
+        "available_models": [
+          {
+            "id": "o4-mini",
+            "name": "O4 Mini",
+            "description": "가장 빠르고 저렴한 모델"
+          },
+          {
+            "id": "o4-preview",
+            "name": "O4 Preview",
+            "description": "높은 품질의 코드 생성 모델"
+          },
+          {
+            "id": "o4-pro",
+            "name": "O4 Pro",
+            "description": "최고 품질의 코드 생성 모델"
+          }
+        ]
+      }
+    }
+  ]
+}

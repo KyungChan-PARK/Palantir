@@ -1,0 +1,6 @@
+id,name,age,email,department
+1,홍길동,30,hong@example.com,개발팀
+2,김철수,25,kim@example.com,마케팅팀
+3,이영희,35,lee@example.com,인사팀
+4,박지성,28,park@example.com,개발팀
+5,최유진,32,choi@example.com,영업팀 
