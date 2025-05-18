@@ -17,6 +17,16 @@ pre-commit run --all-files
 
 CI 파이프라인에서도 동일한 검사가 실행됩니다.
 
+### 1.2 로깅 설정
+
+공통 모듈 `common/logging_config.py`에서 제공하는 `configure_logging()` 함수를 사용해 로깅을 초기화합니다. 기본 설정은 콘솔 출력이며 파일 경로를 지정하면 로그 파일도 생성됩니다.
+
+```python
+from common.logging_config import configure_logging
+
+configure_logging(log_file="palantir.log")
+```
+
 ## 2. 개발 워크플로우 단계
 
 ### 2.1 계획 단계
