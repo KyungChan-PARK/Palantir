@@ -14,7 +14,7 @@ from __future__ import annotations
 from datetime import datetime
 from airflow import DAG
 from airflow.operators.python import PythonOperator
-from airflow.operators.bash import BashOperator
+from airflow.providers.docker.operators.docker import DockerOperator
 from common.neo4j_utils import load_csv_to_neo4j, write_lineage_edge
 from pathlib import Path
 import os
@@ -84,7 +84,12 @@ with DAG(
     catchup=False,
 ) as dag:
     t1 = PythonOperator(task_id="extract_lms_logs", python_callable=extract_logs)
-    t2 = BashOperator(task_id="clean_logs", bash_command="spark-submit analysis/airflow/jobs/clean_logs.py")
+    t2 = DockerOperator(
+        task_id="clean_logs",
+        image="apache/spark:latest",
+        command="spark-submit analysis/airflow/jobs/clean_logs.py",
+        auto_remove=True,
+    )
     t3 = PythonOperator(task_id="load_to_pg", python_callable=load_to_pg)
     t4 = PythonOperator(task_id="sync_neo4j", python_callable=sync_neo4j)
     t5 = PythonOperator(task_id="ge_expect_validate", python_callable=validate_ge)
