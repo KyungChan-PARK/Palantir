@@ -9,6 +9,7 @@ import logging
 import os
 import random
 import uuid
+from common.path_utils import get_palantir_root
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Union
 
@@ -231,9 +232,9 @@ if __name__ == "__main__":
     
     async def main():
         result = await create_test_document_set(
-            output_dir="C:\\Users\\packr\\OneDrive\\palantir\\temp\\test_documents\\docs_sample",
+            output_dir=os.path.join(get_palantir_root().as_posix(), "temp", "test_documents", "docs_sample"),
             count=5,
-            metadata_file="C:\\Users\\packr\\OneDrive\\palantir\\temp\\test_documents\\metadata_sample.json"
+            metadata_file=os.path.join(get_palantir_root().as_posix(), "temp", "test_documents", "metadata_sample.json")
         )
         print(f"결과: {result}")
     

@@ -11,6 +11,7 @@ import os
 import time
 from typing import Any, Dict, List, Optional, Tuple, Union
 
+from common.path_utils import get_palantir_root
 import yaml
 from sentence_transformers import SentenceTransformer
 import chromadb
@@ -458,7 +459,7 @@ async def generate_code_with_claude(prompt: str, context: str = None,
     Returns:
         생성된 코드
     """
-    client = ClaudeAIPair("C:\\Users\\packr\\OneDrive\\palantir\\config\\llm.yaml")
+    client = ClaudeAIPair(os.path.join(get_palantir_root().as_posix(), "config", "llm.yaml"))
     generated_code = await client.ask_for_code(prompt, context, language)
     return generated_code
 
@@ -478,7 +479,7 @@ async def query_project_knowledge(query: str, limit: int = 5) -> List[Dict[str, 
     Returns:
         검색 결과 목록
     """
-    rag_system = LocalKnowledgeRAG("C:\\Users\\packr\\OneDrive\\palantir\\config\\rag.yaml")
+    rag_system = LocalKnowledgeRAG(os.path.join(get_palantir_root().as_posix(), "config", "rag.yaml"))
     results = await rag_system.query(query, limit)
     return results
 
@@ -501,7 +502,7 @@ async def generate_self_improving_code(prompt: str, filename: str,
         코드 생성 및 개선 결과
     """
     # Claude AI 페어 초기화
-    claude_pair = ClaudeAIPair("C:\\Users\\packr\\OneDrive\\palantir\\config\\llm.yaml")
+    claude_pair = ClaudeAIPair(os.path.join(get_palantir_root().as_posix(), "config", "llm.yaml"))
     
     # 초기 코드 생성
     initial_code = await claude_pair.ask_for_code(prompt, language=language)
@@ -557,8 +558,8 @@ async def generate_context_enhanced_code(query: str, task: str, filename: str,
         컨텍스트 강화 코드 생성 결과
     """
     # RAG 시스템 및 Claude AI 페어 초기화
-    rag_system = LocalKnowledgeRAG("C:\\Users\\packr\\OneDrive\\palantir\\config\\rag.yaml")
-    claude_pair = ClaudeAIPair("C:\\Users\\packr\\OneDrive\\palantir\\config\\llm.yaml")
+    rag_system = LocalKnowledgeRAG(os.path.join(get_palantir_root().as_posix(), "config", "rag.yaml"))
+    claude_pair = ClaudeAIPair(os.path.join(get_palantir_root().as_posix(), "config", "llm.yaml"))
     
     # 문서 인덱싱
     await rag_system.index_documents()

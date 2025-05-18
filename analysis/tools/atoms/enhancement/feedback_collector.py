@@ -8,6 +8,7 @@ enabling a self-improving feedback loop for the data analysis system.
 import os
 import json
 import datetime
+from common.path_utils import get_palantir_root
 import pandas as pd
 import numpy as np
 from typing import Dict, Any, List, Optional, Union, Tuple
@@ -57,7 +58,7 @@ async def collect_model_feedback(
     try:
         # Setup default storage path
         if storage_path is None:
-            storage_path = os.path.join("C:\\Users\\packr\\OneDrive\\palantir", "output", "feedback")
+            storage_path = os.path.join(get_palantir_root().as_posix(), "output", "feedback")
         
         # Create directory if it doesn't exist
         os.makedirs(storage_path, exist_ok=True)
@@ -164,7 +165,7 @@ async def analyze_performance_trends(
     try:
         # Setup default feedback path
         if feedback_path is None:
-            feedback_path = os.path.join("C:\\Users\\packr\\OneDrive\\palantir", "output", "feedback")
+            feedback_path = os.path.join(get_palantir_root().as_posix(), "output", "feedback")
         
         # Check if feedback log exists
         log_file = os.path.join(feedback_path, "feedback_log.csv")
@@ -315,7 +316,7 @@ async def identify_improvement_areas(
     try:
         # Setup default feedback path
         if feedback_path is None:
-            feedback_path = os.path.join("C:\\Users\\packr\\OneDrive\\palantir", "output", "feedback")
+            feedback_path = os.path.join(get_palantir_root().as_posix(), "output", "feedback")
         
         # First, get performance trends
         trends_result = await analyze_performance_trends(

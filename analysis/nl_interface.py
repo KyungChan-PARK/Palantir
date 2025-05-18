@@ -5,6 +5,7 @@
 
 import os
 import json
+from common.path_utils import get_palantir_root
 import asyncio
 import argparse
 from typing import Dict, Any, List, Optional, Tuple
@@ -143,7 +144,7 @@ def extract_parameters(query: str, intent: str) -> Dict[str, Any]:
             
             # 상대 경로를 절대 경로로 변환
             if not os.path.isabs(file_path):
-                file_path = os.path.join("C:\\Users\\packr\\OneDrive\\palantir", file_path)
+                file_path = os.path.join(get_palantir_root().as_posix(), file_path)
             
             params["file_path"] = file_path
             break
