@@ -10,6 +10,9 @@ import functools
 import inspect
 import logging
 import os
+
+# Ensure log directory exists before configuring logging
+os.makedirs('logs', exist_ok=True)
 from typing import Any, Callable, Dict, List, Optional, Union
 
 # 로깅 설정

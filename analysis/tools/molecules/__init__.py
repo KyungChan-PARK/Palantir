@@ -3,11 +3,18 @@
 분자 레벨 데이터 분석 워크플로우
 """
 
-from analysis.tools.molecules.exploratory_analysis import exploratory_analysis
-from analysis.tools.molecules.predictive_modeling import build_predictive_model
+try:
+    from analysis.tools.molecules.exploratory_analysis import exploratory_analysis
+    from analysis.tools.molecules.predictive_modeling import build_predictive_model
+except Exception:  # Optional dependencies may be missing
+    exploratory_analysis = None
+    build_predictive_model = None
 
-# Import codebase_knowledge
-from . import codebase_knowledge
+# Import codebase_knowledge lazily
+try:
+    from . import codebase_knowledge
+except Exception:  # pragma: no cover - optional
+    codebase_knowledge = None
 
 # 버전 정보
 __version__ = '0.1.1'
