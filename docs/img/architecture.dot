@@ -1,0 +1,15 @@
+digraph G {
+  rankdir=LR;
+  onedrive [shape=folder label="OneDrive"];
+  airflow [shape=component label="Airflow DAGs"];
+  ge [shape=component label="Great\nExpectations"];
+  neo4j [shape=cylinder label="Neo4j"];
+  chroma [shape=cylinder label="ChromaDB"];
+  fastapi [shape=component label="FastAPI API"];
+  dash [shape=component label="Dash UI"];
+  onedrive -> airflow -> neo4j;
+  airflow -> ge;
+  airflow -> chroma;
+  fastapi -> neo4j;
+  dash -> fastapi;
+}

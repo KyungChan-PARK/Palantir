@@ -4,43 +4,14 @@ from dash import dcc, html, Output, Input
 import dash_cytoscape as cyto
 import plotly.express as px
 import pandas as pd
-from neo4j import GraphDatabase
+import requests, json
 
-# Neo4j connection
-driver = GraphDatabase.driver(
-    "bolt://localhost:7687", auth=("neo4j", os.getenv("NEO4J_PASSWORD", "pass"))
-)
+BACKEND_URL = "http://localhost:8000/graph"
 
 
-def fetch_graph(limit: int = 200):
-    """Fetch student-course-topic subgraph."""
-    q = (
-        "MATCH p=(s:Student)-[:ENROLLED_IN]->(c:Course)-[:COVERS]->(t:Topic) "
-        "RETURN nodes(p) AS n, relationships(p) AS r LIMIT $lim"
-    )
-    with driver.session() as s:
-        rec = s.run(q, lim=limit).single()
-    nodes = [
-        {
-            "data": {
-                "id": n.id,
-                "label": list(n.labels)[0],
-                **n._properties,
-            }
-        }
-        for n in rec["n"]
-    ]
-    edges = [
-        {
-            "data": {
-                "source": r.start_node.id,
-                "target": r.end_node.id,
-                "label": r.type,
-            }
-        }
-        for r in rec["r"]
-    ]
-    return nodes + edges
+def fetch_graph(limit=500):
+    """백엔드 FastAPI에서 그래프 데이터를 받아온다"""
+    return requests.get(BACKEND_URL, params={"limit": limit}).json()
 
 
 app = dash.Dash(__name__)
