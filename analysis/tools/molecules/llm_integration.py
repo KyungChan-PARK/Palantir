@@ -73,4 +73,53 @@ class LocalKnowledgeRAG:
         self._initialize_vector_db()
         logger.info("로컬 지식 베이스 RAG 시스템이 초기화되었습니다.")
 
-# ... existing code ... 
+    def _initialize_vector_db(self) -> None:
+        """설정 파일을 기반으로 ChromaDB 벡터 저장소를 초기화한다."""
+        if chromadb is None:
+            raise ImportError("chromadb package is required for vector DB")
+
+        db_cfg = self.config.get("vector_db", {})
+        persist_dir = os.path.join(
+            get_palantir_root(), db_cfg.get("persist_directory", "vector_db")
+        )
+
+        self.vector_db = chromadb.PersistentClient(path=persist_dir)
+        self.collection = self.vector_db.get_or_create_collection(
+            name=db_cfg.get("collection_name", "project_knowledge"),
+            metadata={"hnsw:space": db_cfg.get("similarity_metric", "cosine")},
+        )
+        logger.info("벡터 데이터베이스 초기화 완료: %s", persist_dir)
+
+    def _generate_embeddings(self, texts: List[str]) -> List[List[float]]:
+        """주어진 텍스트 리스트에 대한 임베딩을 생성한다."""
+        if SentenceTransformer is None:
+            raise ImportError(
+                "sentence-transformers package is required for embedding generation"
+            )
+
+        if self.embeddings_model is None:
+            emb_cfg = self.config.get("embeddings", {})
+            model_name = emb_cfg.get("model", "sentence-transformers/all-MiniLM-L6-v2")
+            device = emb_cfg.get("device", "cpu")
+            self.embeddings_model = SentenceTransformer(model_name, device=device)
+
+        batch = self.config.get("embeddings", {}).get("batch_size", 32)
+        embeddings = self.embeddings_model.encode(texts, batch_size=batch)
+        return embeddings.tolist()
+
+    async def retrieval_augmented_generation(self, query: str, top_k: int | None = None) -> str:
+        """RAG 방식으로 쿼리에 대한 응답을 생성한다."""
+        if self.collection is None:
+            raise RuntimeError("Vector database is not initialized")
+
+        query_emb = self._generate_embeddings([query])[0]
+        k = top_k or self.config.get("search", {}).get("top_k", 5)
+        results = self.collection.query(query_embeddings=[query_emb], n_results=k)
+        documents = results.get("documents", [[]])[0]
+        context = "\n".join(documents)
+
+        llm_cfg_path = os.path.join(get_palantir_root(), "config", "llm.yaml")
+        client = ClaudeClient(llm_cfg_path)
+        prompt = f"{query}\n\n자료:\n{context}"
+        response = await create_completion(client, prompt)
+        return response
