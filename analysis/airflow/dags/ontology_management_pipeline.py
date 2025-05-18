@@ -26,6 +26,7 @@ sys.path.append(PALANTIR_ROOT)
 
 # 필요한 모듈 임포트
 from analysis.atoms.neo4j_connector import Neo4jConnector
+from airflow.hooks.base import BaseHook
 from analysis.molecules.ontology_manager import OntologyManager
 from analysis.molecules.notification_manager import NotificationManager
 
@@ -55,15 +56,21 @@ def load_config():
     with open(os.path.join(PALANTIR_ROOT, 'config', 'app_config.json'), 'r', encoding='utf-8') as f:
         return json.load(f)
 
+# Neo4j 커넥션 로드
+def get_neo4j_connector():
+    conn = BaseHook.get_connection('neo4j_default')
+    uri = conn.host
+    if conn.port:
+        uri = f"{uri}:{conn.port}"
+    if not uri.startswith('bolt://'):
+        uri = f"bolt://{uri}"
+    return Neo4jConnector(uri=uri, username=conn.login, password=conn.password)
+
 # 1. 온톨로지 상태 확인
 def check_ontology_status(**kwargs):
     config = load_config()
     
-    neo4j_connector = Neo4jConnector(
-        uri=config['neo4j']['uri'],
-        username=config['neo4j']['username'],
-        password=config['neo4j']['password']
-    )
+    neo4j_connector = get_neo4j_connector()
     ontology_manager = OntologyManager(neo4j_connector)
     
     # 온톨로지 상태 확인
@@ -87,11 +94,7 @@ def sync_ontology_schema(**kwargs):
     with open(status_path, 'r', encoding='utf-8') as f:
         status = json.load(f)
     
-    neo4j_connector = Neo4jConnector(
-        uri=config['neo4j']['uri'],
-        username=config['neo4j']['username'],
-        password=config['neo4j']['password']
-    )
+    neo4j_connector = get_neo4j_connector()
     ontology_manager = OntologyManager(neo4j_connector)
     
     # 온톨로지 정의 파일 로드
@@ -113,11 +116,7 @@ def sync_ontology_schema(**kwargs):
 def clean_ontology_data(**kwargs):
     config = load_config()
     
-    neo4j_connector = Neo4jConnector(
-        uri=config['neo4j']['uri'],
-        username=config['neo4j']['username'],
-        password=config['neo4j']['password']
-    )
+    neo4j_connector = get_neo4j_connector()
     ontology_manager = OntologyManager(neo4j_connector)
     
     # 데이터 정리 (오래된 데이터, 중복 등)
@@ -153,11 +152,7 @@ def clean_ontology_data(**kwargs):
 def validate_ontology_relationships(**kwargs):
     config = load_config()
     
-    neo4j_connector = Neo4jConnector(
-        uri=config['neo4j']['uri'],
-        username=config['neo4j']['username'],
-        password=config['neo4j']['password']
-    )
+    neo4j_connector = get_neo4j_connector()
     ontology_manager = OntologyManager(neo4j_connector)
     
     # 관계 검증
@@ -184,11 +179,7 @@ def validate_ontology_relationships(**kwargs):
 def backup_ontology(**kwargs):
     config = load_config()
     
-    neo4j_connector = Neo4jConnector(
-        uri=config['neo4j']['uri'],
-        username=config['neo4j']['username'],
-        password=config['neo4j']['password']
-    )
+    neo4j_connector = get_neo4j_connector()
     ontology_manager = OntologyManager(neo4j_connector)
     
     # 현재 날짜로 백업 파일명 생성

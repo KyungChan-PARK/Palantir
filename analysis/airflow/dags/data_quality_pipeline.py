@@ -30,6 +30,7 @@ from analysis.atoms.neo4j_connector import Neo4jConnector
 from analysis.molecules.quality_validator import QualityValidator
 from analysis.molecules.ontology_manager import OntologyManager
 from analysis.molecules.notification_manager import NotificationManager
+from airflow.hooks.base import BaseHook
 
 # 기본 인수 정의
 default_args = {
@@ -56,6 +57,16 @@ dag = DAG(
 def load_config():
     with open(os.path.join(PALANTIR_ROOT, 'config', 'app_config.json'), 'r', encoding='utf-8') as f:
         return json.load(f)
+
+# Neo4j 커넥션 로드
+def get_neo4j_connector():
+    conn = BaseHook.get_connection('neo4j_default')
+    uri = conn.host
+    if conn.port:
+        uri = f"{uri}:{conn.port}"
+    if not uri.startswith('bolt://'):
+        uri = f"bolt://{uri}"
+    return Neo4jConnector(uri=uri, username=conn.login, password=conn.password)
 
 # 품질 기대치 로드
 def load_expectations(expectation_path):
@@ -185,11 +196,7 @@ def store_validation_results(**kwargs):
         validation_results = json.load(f)
     
     # Neo4j에 결과 저장
-    neo4j_connector = Neo4jConnector(
-        uri=config['neo4j']['uri'],
-        username=config['neo4j']['username'],
-        password=config['neo4j']['password']
-    )
+    neo4j_connector = get_neo4j_connector()
     ontology_manager = OntologyManager(neo4j_connector)
     
     # 검증 실행 기록 생성

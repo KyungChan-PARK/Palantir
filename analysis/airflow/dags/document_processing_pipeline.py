@@ -29,6 +29,7 @@ from analysis.atoms.neo4j_connector import Neo4jConnector
 from analysis.molecules.ontology_manager import OntologyManager
 from analysis.molecules.document_processor import DocumentProcessor
 from analysis.molecules.indexer import Indexer
+from airflow.hooks.base import BaseHook
 
 # 기본 인수 정의
 default_args = {
@@ -55,6 +56,16 @@ dag = DAG(
 def load_config():
     with open(os.path.join(PALANTIR_ROOT, 'config', 'app_config.json'), 'r', encoding='utf-8') as f:
         return json.load(f)
+
+# Neo4j 커넥션 로드
+def get_neo4j_connector():
+    conn = BaseHook.get_connection('neo4j_default')
+    uri = conn.host
+    if conn.port:
+        uri = f"{uri}:{conn.port}"
+    if not uri.startswith('bolt://'):
+        uri = f"bolt://{uri}"
+    return Neo4jConnector(uri=uri, username=conn.login, password=conn.password)
 
 # 1. 새 문서 감지
 def detect_new_documents(**kwargs):
@@ -108,11 +119,7 @@ def update_ontology(**kwargs):
     processed_docs = ti.xcom_pull(task_ids='extract_text')
     config = load_config()
     
-    neo4j_connector = Neo4jConnector(
-        uri=config['neo4j']['uri'],
-        username=config['neo4j']['username'],
-        password=config['neo4j']['password']
-    )
+    neo4j_connector = get_neo4j_connector()
     ontology_manager = OntologyManager(neo4j_connector)
     
     for doc in processed_docs:
