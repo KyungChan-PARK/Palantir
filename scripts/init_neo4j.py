@@ -3,10 +3,12 @@ Init Neo4j:
 1) Create constraints / indexes
 2) (Optional) Import OWL
 """
+import os
 from neo4j import GraphDatabase
 from pathlib import Path
 
-DRIVER = GraphDatabase.driver("bolt://localhost:7687", auth=("neo4j", "pass"))
+NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD", "pass")
+DRIVER = GraphDatabase.driver("bolt://localhost:7687", auth=("neo4j", NEO4J_PASSWORD))
 
 SCHEMA_QUERIES = [
     "CREATE CONSTRAINT student_id IF NOT EXISTS ON (s:Student) ASSERT s.student_id IS UNIQUE",

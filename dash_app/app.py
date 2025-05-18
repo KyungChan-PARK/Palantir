@@ -1,3 +1,4 @@
+import os
 import dash
 from dash import dcc, html, Output, Input
 import dash_cytoscape as cyto
@@ -6,7 +7,9 @@ import pandas as pd
 from neo4j import GraphDatabase
 
 # Neo4j connection
-driver = GraphDatabase.driver("bolt://localhost:7687", auth=("neo4j", "pass"))
+driver = GraphDatabase.driver(
+    "bolt://localhost:7687", auth=("neo4j", os.getenv("NEO4J_PASSWORD", "pass"))
+)
 
 
 def fetch_graph(limit: int = 200):

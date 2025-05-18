@@ -3,12 +3,15 @@ Neo4j helper 함수 모음
 - load_csv_to_neo4j: CSV 파일을 지정된 라벨로 로드
 - write_lineage_edge: 라인리지 엣지(:TRANSFORMS) 기록
 """
+import os
 from pathlib import Path
 from typing import Dict, Any
 from neo4j import GraphDatabase
 
 _DRIVER = GraphDatabase.driver(
-    "bolt://localhost:7687", auth=("neo4j", "pass"), encrypted=False
+    "bolt://localhost:7687",
+    auth=("neo4j", os.getenv("NEO4J_PASSWORD", "pass")),
+    encrypted=False,
 )
 
 
