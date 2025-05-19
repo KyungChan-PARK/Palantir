@@ -29,7 +29,7 @@ services:
       - ./data/postgres:/var/lib/postgresql/data
 
   airflow:
-    image: apache/airflow:2.8.1-python3.11
+    image: apache/airflow:slim-3.0.1-python3.12
     container_name: airflow
     depends_on:
       - neo4j
@@ -40,15 +40,16 @@ services:
       - AIRFLOW_UID=50000
       - AIRFLOW_CONN_ONTOLOGY_PG=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/ontology
       - PYTHONPATH=/opt/airflow
+      - GX_PYTHON_EXPERIMENTAL=1
     ports:
       - "8080:8080"
     volumes:
-      - ./:/opt/airflow
+      - ./dags:/opt/airflow/dags
       - ./data:/opt/airflow/data
-    build:
-      context: .
-      dockerfile: docker/airflow.Dockerfile
-    restart: unless-stopped
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+      - ./tests:/opt/airflow/tests
+      - ./great_expectations:/opt/airflow/great_expectations
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
       interval: 30s

@@ -1,0 +1,13 @@
+boto3
+codex-cli
+dash
+dash-cytoscape
+neo4j
+pandas
+pathlib
+plotly
+psycopg2-binary
+pyspark
+pytest
+pyyaml
+sqlalchemy
